@@ -1,5 +1,7 @@
-package ics.upjs.sk.spravaucebni;
+package ics.upjs.sk.spravaucebni.storage;
 
+import ics.upjs.sk.spravaucebni.Pouzivatel;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -7,12 +9,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class UcebnaDaoTest {
+public class PouzivatelDaoTest {
     
-    private UcebnaDao dao;
+    private PouzivatelDao dao = DaoFactory.INSTANCE.getPouzivatelDao();
     
-    public UcebnaDaoTest() {
-        dao = DaoFactory.INSTANCE.getUcebnaDao();
+    public PouzivatelDaoTest() {
     }
     
     @BeforeClass
@@ -31,9 +32,9 @@ public class UcebnaDaoTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void getAllTest() {
+        List<Pouzivatel> pouzivatelia = dao.getAll();
+        assertTrue(pouzivatelia.size() > 0);
+    }
 }

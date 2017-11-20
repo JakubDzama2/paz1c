@@ -1,5 +1,7 @@
-package ics.upjs.sk.spravaucebni;
+package ics.upjs.sk.spravaucebni.storage;
 
+import ics.upjs.sk.spravaucebni.Ucebna;
+import ics.upjs.sk.spravaucebni.storage.UcebnaDao;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;

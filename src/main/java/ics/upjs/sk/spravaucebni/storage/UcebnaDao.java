@@ -1,5 +1,6 @@
-package ics.upjs.sk.spravaucebni;
+package ics.upjs.sk.spravaucebni.storage;
 
+import ics.upjs.sk.spravaucebni.Ucebna;
 import java.util.List;
 
 public interface UcebnaDao {
