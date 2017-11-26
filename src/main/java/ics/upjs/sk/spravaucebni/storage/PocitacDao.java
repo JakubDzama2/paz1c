@@ -6,5 +6,7 @@ import java.util.List;
 public interface PocitacDao {
 
     List<Pocitac> getAll();
+
+    public List<Pocitac> getByUcebnaId(Long id);
     
 }

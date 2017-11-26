@@ -6,5 +6,7 @@ import java.util.List;
 public interface SpotrebaDao {
 
     List<Spotreba> getAll();
+
+    public List<Spotreba> getByUcebnaId(Long id);
     
 }

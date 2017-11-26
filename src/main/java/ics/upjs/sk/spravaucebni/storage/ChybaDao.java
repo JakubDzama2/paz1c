@@ -6,5 +6,7 @@ import java.util.List;
 public interface ChybaDao {
 
     List<Chyba> getAll();
+
+    public List<Chyba> getByUcebnaId(Long id);
     
 }
