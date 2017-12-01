@@ -7,8 +7,6 @@ import ics.upjs.sk.spravaucebni.Projektor;
 import ics.upjs.sk.spravaucebni.Spotreba;
 import ics.upjs.sk.spravaucebni.Tabula;
 import ics.upjs.sk.spravaucebni.Ucebna;
-import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 
 public class Demo {

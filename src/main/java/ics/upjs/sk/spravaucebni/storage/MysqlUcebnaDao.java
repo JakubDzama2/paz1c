@@ -88,29 +88,29 @@ public class MysqlUcebnaDao implements UcebnaDao {
             data.put("nazov", u.getNazov());
             data.put("pouzivatel_id", u.getIdPouzivatela());
             u.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-
-            for (Chyba chyba : u.getChyby()) {
-                chybaDao.save(chyba);
-            }
-            for (Pocitac pocitac : u.getPocitace()) {
-                pocitacDao.save(pocitac);
-            }
-            for (Projektor projektor : u.getProjektory()) {
-                projektorDao.save(projektor);
-            }
-            for (Spotreba spotreba : u.getSpotreby()) {
-                spotrebaDao.save(spotreba);
-            }
-            for (Tabula tabula : u.getTabule()) {
-                tabulaDao.save(tabula);
-            }
+            savePrvkyUcebne(u);
+            
         } else {
             String sql = "UPDATE ucebna SET nazov = ?, pouzivatel_id = ? WHERE id = " + u.getId();
             jdbcTemplate.update(sql, u.getNazov(), u.getIdPouzivatela());
         }
     }
     
-    private void savePrvkyUcebne(Ucebna ucebna) {
-        
+    private void savePrvkyUcebne(Ucebna u) {
+        for (Chyba chyba : u.getChyby()) {
+                chybaDao.save(chyba);
+        }
+        for (Pocitac pocitac : u.getPocitace()) {
+            pocitacDao.save(pocitac);
+        }
+        for (Projektor projektor : u.getProjektory()) {
+            projektorDao.save(projektor);
+        }
+        for (Spotreba spotreba : u.getSpotreby()) {
+            spotrebaDao.save(spotreba);
+        }
+        for (Tabula tabula : u.getTabule()) {
+            tabulaDao.save(tabula);
+        }
     }
 }

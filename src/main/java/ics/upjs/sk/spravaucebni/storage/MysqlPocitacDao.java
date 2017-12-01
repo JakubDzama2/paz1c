@@ -20,14 +20,14 @@ public class MysqlPocitacDao implements PocitacDao {
 
     @Override
     public List<Pocitac> getAll() {
-        String sql = "SELECT id, seriove_cislo, posledne_prihlasenie, ucebna_id FROM pocitac ORDER BY id";
+        String sql = "SELECT id, seriove_cislo, posledne_pouzitie, ucebna_id FROM pocitac ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Pocitac>() {
             @Override
             public Pocitac mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Pocitac pocitac = new Pocitac();
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
-                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_prihlasenie").toLocalDateTime());
+                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
             }
@@ -36,14 +36,14 @@ public class MysqlPocitacDao implements PocitacDao {
 
     @Override
     public List<Pocitac> getByUcebnaId(Long id) {
-        String sql = "SELECT id, seriove_cislo, posledne_prihlasenie, ucebna_id FROM pocitac WHERE ucebna_id = " + id + " ORDER BY id";
+        String sql = "SELECT id, seriove_cislo, posledne_pouzitie, ucebna_id FROM pocitac WHERE ucebna_id = " + id + " ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Pocitac>() {
             @Override
             public Pocitac mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Pocitac pocitac = new Pocitac();
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
-                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_prihlasenie").toLocalDateTime());
+                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
             }
