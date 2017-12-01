@@ -6,4 +6,6 @@ import java.util.List;
 public interface PouzivatelDao {
     
     List<Pouzivatel> getAll();
+
+    public void save(Pouzivatel p);
 }

@@ -5,6 +5,7 @@ public class Tabula {
     private Long id;
     private String typ;
     private int pocetPisatiek;
+    private Long ucebnaId;
 
     public Long getId() {
         return id;
@@ -30,5 +31,11 @@ public class Tabula {
         this.pocetPisatiek = pocetPisatiek;
     }
     
-    
+     public Long getUcebnaId() {
+        return ucebnaId;
+    }
+
+    public void setUcebnaId(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
+    }
 }

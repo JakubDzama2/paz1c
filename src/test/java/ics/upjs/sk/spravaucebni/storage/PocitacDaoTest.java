@@ -1,6 +1,7 @@
 package ics.upjs.sk.spravaucebni.storage;
 
 import ics.upjs.sk.spravaucebni.Pocitac;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,5 +37,26 @@ public class PocitacDaoTest {
     public void getAllTest() {
         List<Pocitac> all = dao.getAll();
         assertTrue(all.size() > 0);
+    }
+    
+    @Test
+    public void saveTest() {
+        List<Pocitac> all = dao.getAll();
+        Pocitac pocitac = new Pocitac();
+        pocitac.setPoslednePouzitie(LocalDateTime.now());
+        pocitac.setSerioveCislo("asdsdsa");
+        pocitac.setUcebnaId(1L);
+        dao.save(pocitac);
+        assertTrue(all.size() + 1 == dao.getAll().size());
+    }
+    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Pocitac p = dao.getAll().get(0);
+        Pocitac p2 = dao.delete(p);
+        assertEquals(p, p2);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        dao.save(p2);
     }
 }

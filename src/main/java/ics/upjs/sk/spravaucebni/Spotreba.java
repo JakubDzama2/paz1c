@@ -1,12 +1,13 @@
 package ics.upjs.sk.spravaucebni;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Spotreba {
 
     private Long id;
     private int hodnota;
-    private LocalDateTime cas;
+    private LocalDate datum;
+    private Long ucebnaId;
 
     public Long getId() {
         return id;
@@ -24,14 +25,20 @@ public class Spotreba {
         this.hodnota = hodnota;
     }
 
-    public LocalDateTime getCas() {
-        return cas;
+    public LocalDate getDatum() {
+        return datum;
     }
 
-    public void setCas(LocalDateTime cas) {
-        this.cas = cas;
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
     }
     
-    
+     public Long getUcebnaId() {
+        return ucebnaId;
+    }
+
+    public void setUcebnaId(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
+    }
     
 }

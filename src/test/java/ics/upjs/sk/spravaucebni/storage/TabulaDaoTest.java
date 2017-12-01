@@ -37,4 +37,15 @@ public class TabulaDaoTest {
         List<Tabula> all = dao.getAll();
         assertTrue(all.size() > 0);
     }
+    
+    @Test
+    public void saveTest() {
+        List<Tabula> all = dao.getAll();
+        Tabula t = new Tabula();
+        t.setTyp("na kriedy");
+        t.setPocetPisatiek(51);
+        t.setUcebnaId(1L);
+        dao.save(t);
+        assertTrue(all.size() + 1 == dao.getAll().size());
+    }
 }

@@ -19,7 +19,7 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
     
     @Override
     public List<Pouzivatel> getAll() {
-        String sql = "SELECT * FROM pouzivatel";
+        String sql = "SELECT * FROM pouzivatel ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Pouzivatel>() {
             @Override
             public Pouzivatel mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -33,6 +33,11 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
             
         });
     } 
+
+    @Override
+    public void save(Pouzivatel p) {
+        
+    }
     
     
 }

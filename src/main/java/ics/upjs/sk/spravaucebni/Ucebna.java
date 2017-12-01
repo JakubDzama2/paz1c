@@ -1,17 +1,21 @@
 package ics.upjs.sk.spravaucebni;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ucebna {
 
     private Long id;
     private String nazov;
-    private List<Tabula> tabule;
-    private List<Pocitac> pocitace;
-    private List<Projektor> projektory;
-    private List<Spotreba> spotreby;
-    private List<Chyba> chyby;
+    private List<Tabula> tabule = new ArrayList<>();
+    private List<Pocitac> pocitace = new ArrayList<>();
+    private List<Projektor> projektory = new ArrayList<>();
+    private List<Spotreba> spotreby = new ArrayList<>();
+    private List<Chyba> chyby = new ArrayList<>();
+    private Long idPouzivatela;
 
+    
+    
     public Long getId() {
         return id;
     }
@@ -66,6 +70,14 @@ public class Ucebna {
 
     public void setChyby(List<Chyba> chyby) {
         this.chyby = chyby;
+    }
+
+    public Long getIdPouzivatela() {
+        return idPouzivatela;
+    }
+
+    public void setIdPouzivatela(Long idPouzivatela) {
+        this.idPouzivatela = idPouzivatela;
     }
     
     

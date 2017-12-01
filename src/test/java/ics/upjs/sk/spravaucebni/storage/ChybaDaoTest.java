@@ -1,6 +1,7 @@
 package ics.upjs.sk.spravaucebni.storage;
 
 import ics.upjs.sk.spravaucebni.Chyba;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,5 +37,18 @@ public class ChybaDaoTest {
     public void getAllTest() {
         List<Chyba> all = dao.getAll();
         assertTrue(all.size() > 0);
+    }
+    
+    @Test
+    public void saveTest() {
+        List<Chyba> all = dao.getAll();
+        Chyba ch = new Chyba();
+        ch.setCas(LocalDateTime.now());
+        ch.setHlasatelChyby("Ja");
+        ch.setPoznamka("ahoj");
+        ch.setUcebnaId(1L);
+        dao.save(ch);
+        List<Chyba> all2 = dao.getAll();
+        assertTrue(all.size() + 1 == all2.size());
     }
 }

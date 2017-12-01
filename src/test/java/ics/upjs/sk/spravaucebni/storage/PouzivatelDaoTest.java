@@ -1,6 +1,9 @@
 package ics.upjs.sk.spravaucebni.storage;
 
 import ics.upjs.sk.spravaucebni.Pouzivatel;
+import ics.upjs.sk.spravaucebni.Ucebna;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,5 +39,19 @@ public class PouzivatelDaoTest {
     public void getAllTest() {
         List<Pouzivatel> pouzivatelia = dao.getAll();
         assertTrue(pouzivatelia.size() > 0);
+    }
+    
+    @Test
+    public void saveTest() {
+        List<Pouzivatel> all = dao.getAll();
+        Pouzivatel p = new Pouzivatel();
+        p.setEmail("jan@sranda.sk");
+        p.setMeno("jam");
+        p.setHeslo("nevadi");
+        p.setSol("sol");
+        p.setPoslednePrihlasenie(LocalDateTime.now());
+        p.setUcebne(new ArrayList<Ucebna>());
+        dao.save(p);
+        assertTrue(all.size() + 1 == dao.getAll().size());
     }
 }

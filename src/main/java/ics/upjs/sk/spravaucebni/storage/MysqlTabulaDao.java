@@ -17,7 +17,7 @@ public class MysqlTabulaDao implements TabulaDao {
     
     @Override
     public List<Tabula> getAll() {
-        String sql = "SELECT id, typ, pocet_pisatiek FROM tabula";
+        String sql = "SELECT id, typ, pocet_pisatiek, ucebna_id FROM tabula ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Tabula> () {
             @Override
             public Tabula mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -25,6 +25,7 @@ public class MysqlTabulaDao implements TabulaDao {
                 tabula.setId(rs.getLong("id"));
                 tabula.setTyp(rs.getString("typ"));
                 tabula.setPocetPisatiek(rs.getInt("pocet_pisatiek"));
+                tabula.setUcebnaId(rs.getLong("ucebna_id"));
                 return tabula;
             }
         });
@@ -32,7 +33,7 @@ public class MysqlTabulaDao implements TabulaDao {
 
     @Override
     public List<Tabula> getByUcebnaId(Long id) {
-        String sql = "SELECT id, typ, pocet_pisatiek FROM tabula WHERE ucebna_id = " + id;
+        String sql = "SELECT id, typ, pocet_pisatiek, ucebna_id FROM tabula WHERE ucebna_id = " + id + " ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Tabula> () {
             @Override
             public Tabula mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -40,9 +41,15 @@ public class MysqlTabulaDao implements TabulaDao {
                 tabula.setId(rs.getLong("id"));
                 tabula.setTyp(rs.getString("typ"));
                 tabula.setPocetPisatiek(rs.getInt("pocet_pisatiek"));
+                tabula.setUcebnaId(rs.getLong("ucebna_id"));
                 return tabula;
             }
         });
+    }
+
+    @Override
+    public void save(Tabula t) {
+        
     }
     
 }

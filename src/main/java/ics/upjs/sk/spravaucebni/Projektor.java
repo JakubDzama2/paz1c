@@ -7,6 +7,7 @@ public class Projektor {
     private String kvalitaObrazu;
     private String nazovModelu;
     private int ocakavanaZivotnostLampy;
+    private Long ucebnaId;
 
     public Long getId() {
         return id;
@@ -48,6 +49,12 @@ public class Projektor {
         this.ocakavanaZivotnostLampy = ocakavanaZivotnostLampy;
     }
     
-    
+     public Long getUcebnaId() {
+        return ucebnaId;
+    }
+
+    public void setUcebnaId(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
+    }
     
 }

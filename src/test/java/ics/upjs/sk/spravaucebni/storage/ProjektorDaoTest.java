@@ -37,4 +37,17 @@ public class ProjektorDaoTest {
         List<Projektor> all = dao.getAll();
         assertTrue(all.size() > 0);
     }
+    
+    @Test
+    public void saveTest() {
+        List<Projektor> all = dao.getAll();
+        Projektor p = new Projektor();
+        p.setKvalitaObrazu("good");
+        p.setNazovModelu("A14");
+        p.setOcakavanaZivotnostLampy(457);
+        p.setPocetNasvietenychHodin(4564);
+        p.setUcebnaId(1L);
+        dao.save(p);
+        assertTrue(all.size() + 1 == dao.getAll().size());
+    }
 }

@@ -8,6 +8,7 @@ public class Chyba {
     private String poznamka;
     private LocalDateTime cas;
     private String hlasatelChyby;
+    private Long ucebnaId;
 
     public Long getId() {
         return id;
@@ -39,6 +40,14 @@ public class Chyba {
 
     public void setHlasatelChyby(String hlasatelChyby) {
         this.hlasatelChyby = hlasatelChyby;
+    }
+
+    public Long getUcebnaId() {
+        return ucebnaId;
+    }
+
+    public void setUcebnaId(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
     }
     
     

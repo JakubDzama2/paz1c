@@ -19,10 +19,11 @@ USE `sprava_ucebni` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pouzivatel` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `meno` VARCHAR(100) NOT NULL,
+  `meno` VARCHAR(100) NOT NULL UNIQUE,
   `heslo` VARCHAR(45) NOT NULL,
+  `sol` VARCHAR(45) NOT NULL,
   `posledne_prihlasenie` DATETIME NULL,
-  `email` VARCHAR(80) NULL,
+  `email` VARCHAR(80) NOT NULL UNIQUE,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -33,14 +34,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`ucebna` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nazov` VARCHAR(45) NOT NULL,
-  `pouzivatel_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `pouzivatel_id`),
+  `pouzivatel_id` INT NULL,
+  PRIMARY KEY (`id`),
   INDEX `fk_ucebna_pouzivatel1_idx` (`pouzivatel_id` ASC),
   CONSTRAINT `fk_ucebna_pouzivatel1`
     FOREIGN KEY (`pouzivatel_id`)
     REFERENCES `sprava_ucebni`.`pouzivatel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`projektor` (
   `nazov_modelu` VARCHAR(45) NOT NULL,
   `ocakavana_zivotnost_lampy` INT NOT NULL,
   `ucebna_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `ucebna_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_projektor_ucebna_idx` (`ucebna_id` ASC),
   CONSTRAINT `fk_projektor_ucebna`
     FOREIGN KEY (`ucebna_id`)
@@ -68,10 +69,11 @@ ENGINE = InnoDB;
 -- Table `sprava_ucebni`.`pocitac`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pocitac` (
-  `seriove_cislo` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `seriove_cislo` VARCHAR(45) NOT NULL UNIQUE,
   `ucebna_id` INT NOT NULL,
-  `funkcny` VARCHAR(1) NOT NULL,
-  PRIMARY KEY (`seriove_cislo`, `ucebna_id`),
+  `posledne_pouzitie` DATETIME DEFAULT now(),
+  PRIMARY KEY (`id`),
   INDEX `fk_pocitac_ucebna1_idx` (`ucebna_id` ASC),
   CONSTRAINT `fk_pocitac_ucebna1`
     FOREIGN KEY (`ucebna_id`)
@@ -86,10 +88,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`tabula` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `typ` CHAR(1) NOT NULL,
+  `typ` VARCHAR(45) NOT NULL,
   `pocet_pisatiek` INT NOT NULL,
   `ucebna_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `ucebna_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_tabula_ucebna1_idx` (`ucebna_id` ASC),
   CONSTRAINT `fk_tabula_ucebna1`
     FOREIGN KEY (`ucebna_id`)
@@ -106,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`chyba` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `poznamka` VARCHAR(500) NULL,
   `cas` DATETIME NOT NULL,
-  `hlasatel_chyby` VARCHAR(100) NULL,
+  `hlasatel_chyby` VARCHAR(100) NOT NULL,
   `ucebna_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `ucebna_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_chyba_ucebna1_idx` (`ucebna_id` ASC),
   CONSTRAINT `fk_chyba_ucebna1`
     FOREIGN KEY (`ucebna_id`)
@@ -123,10 +125,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`spotreba` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `cas` DATETIME NOT NULL,
+  `datum` DATE NOT NULL,
   `hodnota` INT NOT NULL,
   `ucebna_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `ucebna_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_spotreba_ucebna1_idx` (`ucebna_id` ASC),
   CONSTRAINT `fk_spotreba_ucebna1`
     FOREIGN KEY (`ucebna_id`)

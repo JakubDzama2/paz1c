@@ -38,4 +38,14 @@ public class UcebnaDaoTest {
         List<Ucebna> ucebne = dao.getAll();
         assertTrue(ucebne.size() > 0);
     }
+    
+    @Test
+    public void saveTest() {
+        List<Ucebna> all = dao.getAll();
+        Ucebna u = new Ucebna();
+        u.setNazov("XI.A");
+        u.setIdPouzivatela(1L);
+        dao.save(u);
+        assertTrue(all.size() + 1 == dao.getAll().size());
+    }
 }

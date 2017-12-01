@@ -3,9 +3,12 @@ package ics.upjs.sk.spravaucebni.storage;
 import ics.upjs.sk.spravaucebni.Spotreba;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 public class MysqlSpotrebaDao implements SpotrebaDao {
 
@@ -17,14 +20,15 @@ public class MysqlSpotrebaDao implements SpotrebaDao {
     
     @Override
     public List<Spotreba> getAll() {
-        String sql = "SELECT id, pocet_nasvietenych_hodin, kvalita_obrazu, nazov_modelu, ocakavana_zivotnost_lampy FROM projektor";
+        String sql = "SELECT id, datum, hodnota, ucebna_id FROM spotreba ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Spotreba> () {
             @Override
             public Spotreba mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Spotreba spotreba = new Spotreba();
                 spotreba.setId(rs.getLong("id"));
                 spotreba.setHodnota(rs.getInt("hodnota"));
-                spotreba.setCas(rs.getTimestamp("cas").toLocalDateTime());
+                spotreba.setDatum(rs.getDate("datum").toLocalDate());
+                spotreba.setUcebnaId(rs.getLong("ucebna_id"));
                 return spotreba;
             }
         });
@@ -32,17 +36,40 @@ public class MysqlSpotrebaDao implements SpotrebaDao {
 
     @Override
     public List<Spotreba> getByUcebnaId(Long id) {
-        String sql = "SELECT id, pocet_nasvietenych_hodin, kvalita_obrazu, nazov_modelu, ocakavana_zivotnost_lampy FROM projektor WHERE ucebna_id = " + id;
+        String sql = "SELECT id, datum, hodnota, ucebna_id FROM spotreba WHERE ucebna_id = " + id + " ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Spotreba> () {
             @Override
             public Spotreba mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Spotreba spotreba = new Spotreba();
                 spotreba.setId(rs.getLong("id"));
                 spotreba.setHodnota(rs.getInt("hodnota"));
-                spotreba.setCas(rs.getTimestamp("cas").toLocalDateTime());
+                spotreba.setDatum(rs.getDate("datum").toLocalDate());
+                spotreba.setUcebnaId(rs.getLong("ucebna_id"));
                 return spotreba;
             }
         });
     }
+
+    @Override
+    public void save(Spotreba spotreba) {
+        if (spotreba == null) {
+            return;
+        }
+        if (spotreba.getId() == null) {         //INSERT
+            SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+            simpleJdbcInsert.withTableName("spotreba");
+            simpleJdbcInsert.usingGeneratedKeyColumns("id");
+            simpleJdbcInsert.usingColumns("datum", "hodnota", "ucebna_id");
+            Map<String, Object> data = new HashMap<>();
+            data.put("datum", spotreba.getDatum());
+            data.put("hodnota", spotreba.getHodnota());
+            data.put("ucebna_id", spotreba.getUcebnaId());
+            spotreba.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+        } else {          //UPDATE
+            String sql = "UPDATE spotreba SET cas = ?, hodnota = ?, ucebna_id = ? WHERE id = " + spotreba.getId();
+            jdbcTemplate.update(sql, spotreba.getDatum(), spotreba.getHodnota(), spotreba.getUcebnaId());
+        }
+    }
+    
     
 }

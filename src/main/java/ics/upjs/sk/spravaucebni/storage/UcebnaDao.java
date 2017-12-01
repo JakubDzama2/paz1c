@@ -8,5 +8,7 @@ public interface UcebnaDao {
     List<Ucebna> getAll();
     
     List<Ucebna> getByPouzivatelId(Long id);
+
+    public void save(Ucebna u);
     
 }
