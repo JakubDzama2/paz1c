@@ -75,25 +75,30 @@ public class MysqlUcebnaDao implements UcebnaDao {
     }
 
     @Override
-    public void save(Ucebna u) {
+    public boolean save(Ucebna u) {
         if (u == null) {
-            return;
+            return false;
         }
-        if (u.getId() == null) {
-            SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-            simpleJdbcInsert.withTableName("ucebna");
-            simpleJdbcInsert.usingGeneratedKeyColumns("id");
-            simpleJdbcInsert.usingColumns("nazov", "pouzivatel_id");
-            Map<String, Object> data = new HashMap<>();
-            data.put("nazov", u.getNazov());
-            data.put("pouzivatel_id", u.getIdPouzivatela());
-            u.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-            savePrvkyUcebne(u);
-            
-        } else {
-            String sql = "UPDATE ucebna SET nazov = ?, pouzivatel_id = ? WHERE id = " + u.getId();
-            jdbcTemplate.update(sql, u.getNazov(), u.getIdPouzivatela());
+        try {
+            if (u.getId() == null) {
+                SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+                simpleJdbcInsert.withTableName("ucebna");
+                simpleJdbcInsert.usingGeneratedKeyColumns("id");
+                simpleJdbcInsert.usingColumns("nazov", "pouzivatel_id");
+                Map<String, Object> data = new HashMap<>();
+                data.put("nazov", u.getNazov());
+                data.put("pouzivatel_id", u.getIdPouzivatela());
+                u.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+                savePrvkyUcebne(u);
+                
+            } else {
+                String sql = "UPDATE ucebna SET nazov = ?, pouzivatel_id = ? WHERE id = " + u.getId();
+                jdbcTemplate.update(sql, u.getNazov(), u.getIdPouzivatela());
+            }
+        } catch (Exception exception) {
+            return false;
         }
+        return true;
     }
     
     private void savePrvkyUcebne(Ucebna u) {
@@ -111,6 +116,17 @@ public class MysqlUcebnaDao implements UcebnaDao {
         }
         for (Tabula tabula : u.getTabule()) {
             tabulaDao.save(tabula);
+        }
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM ucebna WHERE id = " + id;
+        try {
+            int zmazanych = jdbcTemplate.update(sql);
+            return zmazanych == 1;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

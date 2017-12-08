@@ -7,5 +7,7 @@ public interface PouzivatelDao {
     
     List<Pouzivatel> getAll();
 
-    public void save(Pouzivatel p);
+    public boolean save(Pouzivatel p);
+    
+    public boolean delete(Long id);
 }

@@ -45,25 +45,42 @@ public class MysqlChybaDao implements ChybaDao {
     }
 
     @Override
-    public void save(Chyba chyba) {
+    public boolean save(Chyba chyba) {
         if (chyba == null) {
-            return;
+            return false;
         }
-        if (chyba.getId() == null) {
-            SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-            simpleJdbcInsert.withTableName("chyba");
-            simpleJdbcInsert.usingGeneratedKeyColumns("id");
-            simpleJdbcInsert.usingColumns("poznamka", "cas", "hlasatel_chyby", "ucebna_id");
-            Map<String, Object> data = new HashMap<>();
-            data.put("poznamka", chyba.getPoznamka());
-            data.put("cas", chyba.getCas());
-            data.put("hlasatel_chyby", chyba.getHlasatelChyby());
-            data.put("ucebna_id", chyba.getUcebnaId());
-            chyba.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-        } else {
-            String sql = "UPDATE chyba SET poznamka = ?, cas = ?, hlasatel_chyby = ?, ucebna_id = ? WHERE id = " + chyba.getId();
-            jdbcTemplate.update(sql, chyba.getPoznamka(), chyba.getCas(), chyba.getHlasatelChyby(), chyba.getUcebnaId());
+        try {
+            if (chyba.getId() == null) {
+                SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+                simpleJdbcInsert.withTableName("chyba");
+                simpleJdbcInsert.usingGeneratedKeyColumns("id");
+                simpleJdbcInsert.usingColumns("poznamka", "cas", "hlasatel_chyby", "ucebna_id");
+                Map<String, Object> data = new HashMap<>();
+                data.put("poznamka", chyba.getPoznamka());
+                data.put("cas", chyba.getCas());
+                data.put("hlasatel_chyby", chyba.getHlasatelChyby());
+                data.put("ucebna_id", chyba.getUcebnaId());
+                chyba.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+            } else {
+                String sql = "UPDATE chyba SET poznamka = ?, cas = ?, hlasatel_chyby = ?, ucebna_id = ? WHERE id = " + chyba.getId();
+                jdbcTemplate.update(sql, chyba.getPoznamka(), chyba.getCas(), chyba.getHlasatelChyby(), chyba.getUcebnaId());
+            }
+        } catch (Exception exception) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM chyba WHERE id = " + id;
+        try {
+            int zmazanych = jdbcTemplate.update(sql);
+            return zmazanych == 1;
+        } catch (Exception e) {
+            return false;
+        }
+        
     }
 
     

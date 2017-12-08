@@ -9,6 +9,8 @@ public interface SpotrebaDao {
 
     public List<Spotreba> getByUcebnaId(Long id);
     
-    public void save(Spotreba spotreba);
+    public boolean save(Spotreba spotreba);
+    
+    public boolean delete(Long id);
     
 }

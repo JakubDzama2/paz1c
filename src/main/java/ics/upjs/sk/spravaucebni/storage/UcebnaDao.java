@@ -9,6 +9,8 @@ public interface UcebnaDao {
     
     List<Ucebna> getByPouzivatelId(Long id);
 
-    public void save(Ucebna u);
+    public boolean save(Ucebna u);
+    
+    public boolean delete(Long id);
     
 }

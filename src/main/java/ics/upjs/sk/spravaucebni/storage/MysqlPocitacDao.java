@@ -51,30 +51,40 @@ public class MysqlPocitacDao implements PocitacDao {
     }
 
     @Override
-    public void save(Pocitac pocitac) {
+    public boolean save(Pocitac pocitac) {
         if (pocitac == null) {
-            return;
+            return false;
         }
-        if (pocitac.getId() == null) {
-            SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-            simpleJdbcInsert.withTableName("pocitac");
-            simpleJdbcInsert.usingGeneratedKeyColumns("id");
-            simpleJdbcInsert.usingColumns("seriove_cislo", "posledne_pouzitie", "ucebna_id");
-            Map<String, Object> data = new HashMap<>();
-            data.put("seriove_cislo", pocitac.getSerioveCislo());
-            data.put("posledne_pouzitie", pocitac.getPoslednePouzitie());
-            data.put("ucebna_id", pocitac.getUcebnaId());
-            pocitac.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-        } else {
-            String sql = "UPDATE pocitac SET seriove_cislo = ?, posledne_pouzitie = ?, ucebna_id = ? WHERE id = " + pocitac.getId();
-            jdbcTemplate.update(sql, pocitac.getSerioveCislo(), pocitac.getPoslednePouzitie(), pocitac.getUcebnaId());
+        try {
+            if (pocitac.getId() == null) {
+                SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+                simpleJdbcInsert.withTableName("pocitac");
+                simpleJdbcInsert.usingGeneratedKeyColumns("id");
+                simpleJdbcInsert.usingColumns("seriove_cislo", "posledne_pouzitie", "ucebna_id");
+                Map<String, Object> data = new HashMap<>();
+                data.put("seriove_cislo", pocitac.getSerioveCislo());
+                data.put("posledne_pouzitie", pocitac.getPoslednePouzitie());
+                data.put("ucebna_id", pocitac.getUcebnaId());
+                pocitac.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+            } else {
+                String sql = "UPDATE pocitac SET seriove_cislo = ?, posledne_pouzitie = ?, ucebna_id = ? WHERE id = " + pocitac.getId();
+                jdbcTemplate.update(sql, pocitac.getSerioveCislo(), pocitac.getPoslednePouzitie(), pocitac.getUcebnaId());
+            }
+        } catch (Exception exception) {
+            return false;
         }
-
+        return true;
     }
 
     @Override
-    public Pocitac delete(Pocitac p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM pocitac WHERE id = " + id;
+        try {
+            int zmazanych = jdbcTemplate.update(sql);
+            return zmazanych == 1;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

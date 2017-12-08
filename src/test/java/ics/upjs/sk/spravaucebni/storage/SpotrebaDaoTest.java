@@ -52,5 +52,13 @@ public class SpotrebaDaoTest {
         assertTrue(all.size() + 1 == all2.size());
     }
     
-    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Spotreba s = dao.getAll().get(0);
+        boolean jeZmazany = dao.delete(s.getId());
+        assertTrue(jeZmazany);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        dao.save(s);
+    }
 }

@@ -9,6 +9,7 @@ public interface TabulaDao {
 
     public List<Tabula> getByUcebnaId(Long id);
 
-    public void save(Tabula t);
+    public boolean save(Tabula t);
     
+    public boolean delete(Long id);
 }

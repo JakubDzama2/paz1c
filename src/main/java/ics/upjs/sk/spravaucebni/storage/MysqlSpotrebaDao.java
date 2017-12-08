@@ -51,23 +51,39 @@ public class MysqlSpotrebaDao implements SpotrebaDao {
     }
 
     @Override
-    public void save(Spotreba spotreba) {
+    public boolean save(Spotreba spotreba) {
         if (spotreba == null) {
-            return;
+            return false;
         }
-        if (spotreba.getId() == null) {         //INSERT
-            SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-            simpleJdbcInsert.withTableName("spotreba");
-            simpleJdbcInsert.usingGeneratedKeyColumns("id");
-            simpleJdbcInsert.usingColumns("datum", "hodnota", "ucebna_id");
-            Map<String, Object> data = new HashMap<>();
-            data.put("datum", spotreba.getDatum());
-            data.put("hodnota", spotreba.getHodnota());
-            data.put("ucebna_id", spotreba.getUcebnaId());
-            spotreba.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-        } else {          //UPDATE
-            String sql = "UPDATE spotreba SET cas = ?, hodnota = ?, ucebna_id = ? WHERE id = " + spotreba.getId();
-            jdbcTemplate.update(sql, spotreba.getDatum(), spotreba.getHodnota(), spotreba.getUcebnaId());
+        try {
+            if (spotreba.getId() == null) {         //INSERT
+                SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+                simpleJdbcInsert.withTableName("spotreba");
+                simpleJdbcInsert.usingGeneratedKeyColumns("id");
+                simpleJdbcInsert.usingColumns("datum", "hodnota", "ucebna_id");
+                Map<String, Object> data = new HashMap<>();
+                data.put("datum", spotreba.getDatum());
+                data.put("hodnota", spotreba.getHodnota());
+                data.put("ucebna_id", spotreba.getUcebnaId());
+                spotreba.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+            } else {          //UPDATE
+                String sql = "UPDATE spotreba SET cas = ?, hodnota = ?, ucebna_id = ? WHERE id = " + spotreba.getId();
+                jdbcTemplate.update(sql, spotreba.getDatum(), spotreba.getHodnota(), spotreba.getUcebnaId());
+            }
+        } catch (Exception exception) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM spotreba WHERE id = " + id;
+        try {
+            int zmazanych = jdbcTemplate.update(sql);
+            return zmazanych == 1;
+        } catch (Exception e) {
+            return false;
         }
     }
     

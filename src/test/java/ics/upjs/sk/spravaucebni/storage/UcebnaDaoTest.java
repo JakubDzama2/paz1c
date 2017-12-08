@@ -48,4 +48,15 @@ public class UcebnaDaoTest {
         dao.save(u);
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
+    
+    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Ucebna u = dao.getAll().get(velkost - 1);
+        boolean jeZmazany = dao.delete(u.getId());
+        assertTrue(jeZmazany);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        //dao.save(u);
+    }
 }

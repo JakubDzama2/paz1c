@@ -54,9 +54,10 @@ public class PocitacDaoTest {
     public void deleteTest() {
         int velkost = dao.getAll().size();
         Pocitac p = dao.getAll().get(0);
-        Pocitac p2 = dao.delete(p);
-        assertEquals(p, p2);
+        boolean jeVymazany = dao.delete(p.getId());
         assertTrue(velkost - 1 == dao.getAll().size());
-        dao.save(p2);
+        assertTrue(jeVymazany);
+        dao.save(p);
     }
+
 }

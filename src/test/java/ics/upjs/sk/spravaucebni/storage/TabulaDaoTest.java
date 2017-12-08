@@ -48,4 +48,14 @@ public class TabulaDaoTest {
         dao.save(t);
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
+    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Tabula t = dao.getAll().get(0);
+        boolean jeZmazany = dao.delete(t.getId());
+        assertTrue(jeZmazany);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        dao.save(t);
+    }
 }

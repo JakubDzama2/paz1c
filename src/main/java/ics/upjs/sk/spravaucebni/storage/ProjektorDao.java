@@ -9,6 +9,7 @@ public interface ProjektorDao {
 
     public List<Projektor> getByUcebnaId(Long id);
 
-    public void save(Projektor p);
+    public boolean save(Projektor p);
     
+    public boolean delete(Long id);
 }

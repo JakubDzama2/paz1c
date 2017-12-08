@@ -12,9 +12,8 @@ import java.util.List;
 public class Demo {
 
     public static void main(String[] args) {
-        UcebnaDao dao = DaoFactory.INSTANCE.getUcebnaDao();
-        List<Ucebna> ucebne = dao.getAll();
-        
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        List<Ucebna> ucebne = ucebnaDao.getAll();
         
         ChybaDao chybaDao = DaoFactory.INSTANCE.getChybaDao();
         List<Chyba> chyby = chybaDao.getAll();
@@ -43,9 +42,32 @@ public class Demo {
         TabulaDao tabulaDao = DaoFactory.INSTANCE.getTabulaDao();
         List<Tabula> tabule = tabulaDao.getAll();
         
+        
+        for (Pouzivatel pouzivatel : pouzivatelia) {
+            System.out.println(pouzivatel.getMeno());
+        }
         for (Ucebna u : ucebne) {
             System.out.println(u.getNazov());
+            
+        for (Chyba chyba : u.getChyby()) {
+            System.out.println(chyba.getCas() + " " + chyba.getHlasatelChyby());
         }
+        for (Pocitac pocitac : u.getPocitace()) {
+            System.out.println(pocitac.getSerioveCislo());
+        }
+        
+        for (Projektor projektor : u.getProjektory()) {
+            System.out.println(projektor.getNazovModelu());
+        }
+
+        for (Spotreba s : u.getSpotreby()) {
+            System.out.println(s.getHodnota());
+        }
+        for (Tabula tabula : u.getTabule()) {
+            System.out.println(tabula.getTyp());
+        }
+        }
+        /*
         for (Chyba chyba : chyby) {
             System.out.println(chyba.getCas() + " " + chyba.getHlasatelChyby());
         }
@@ -62,8 +84,13 @@ public class Demo {
         for (Spotreba s : spotreby) {
             System.out.println(s.getHodnota());
         }
+
+
+        Tabula t = tabule.get(0);
+        tabulaDao.delete(t.getId());
         for (Tabula tabula : tabule) {
             System.out.println(tabula.getTyp());
         }
+*/
     }
 }

@@ -9,8 +9,8 @@ public interface PocitacDao {
 
     public List<Pocitac> getByUcebnaId(Long id);
     
-    public void save(Pocitac pocitac);
+    public boolean save(Pocitac pocitac);
 
-    public Pocitac delete(Pocitac p);
+    public boolean delete(Long id);
 
 }

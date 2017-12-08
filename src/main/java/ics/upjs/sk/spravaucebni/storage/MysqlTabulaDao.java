@@ -3,9 +3,12 @@ package ics.upjs.sk.spravaucebni.storage;
 import ics.upjs.sk.spravaucebni.Tabula;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 public class MysqlTabulaDao implements TabulaDao {
 
@@ -48,8 +51,40 @@ public class MysqlTabulaDao implements TabulaDao {
     }
 
     @Override
-    public void save(Tabula t) {
-        
+    public boolean save(Tabula t) {
+        if (t == null) {
+            return false;
+        }
+        try {
+            if (t.getId() == null) {
+                SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+                simpleJdbcInsert.withTableName("tabula");
+                simpleJdbcInsert.usingGeneratedKeyColumns("id");
+                simpleJdbcInsert.usingColumns("typ", "pocet_pisatiek", "ucebna_id");
+                Map<String, Object> data = new HashMap<>();
+                data.put("typ", t.getTyp());
+                data.put("pocet_pisatiek", t.getPocetPisatiek());
+                data.put("ucebna_id", t.getUcebnaId());
+                t.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+            } else {
+                String sql = "UPDATE tabula SET typ = ?, pocet_pisatiek = ?, ucebna_id = ? WHERE id = " + t.getId();
+                jdbcTemplate.update(sql, t.getTyp(), t.getPocetPisatiek(), t.getUcebnaId());
+            }
+        } catch (Exception exception) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        String sql = "DELETE FROM tabula WHERE id = " + id;
+        try {
+            int zmazanych = jdbcTemplate.update(sql);
+            return zmazanych == 1;
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

@@ -50,4 +50,14 @@ public class ProjektorDaoTest {
         dao.save(p);
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
+    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Projektor p = dao.getAll().get(velkost - 1);
+        boolean jeZmazany = dao.delete(p.getId());
+        assertTrue(jeZmazany);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        dao.save(p);
+    }
 }

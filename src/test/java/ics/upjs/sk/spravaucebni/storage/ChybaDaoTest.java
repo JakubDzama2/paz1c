@@ -51,4 +51,14 @@ public class ChybaDaoTest {
         List<Chyba> all2 = dao.getAll();
         assertTrue(all.size() + 1 == all2.size());
     }
+    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Chyba ch = dao.getAll().get(velkost - 1);
+        boolean jeZmazany = dao.delete(ch.getId());
+        assertTrue(jeZmazany);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        dao.save(ch);
+    }
 }

@@ -54,4 +54,14 @@ public class PouzivatelDaoTest {
         dao.save(p);
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
+    
+    @Test
+    public void deleteTest() {
+        int velkost = dao.getAll().size();
+        Pouzivatel p = dao.getAll().get(0);
+        boolean jeZmazany = dao.delete(p.getId());
+        assertTrue(jeZmazany);
+        assertTrue(velkost - 1 == dao.getAll().size());
+        dao.save(p);
+    } 
 }
