@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView fx:id="vyberProjektorListView" layoutX="14.0" layoutY="96.0" prefHeight="238.0" prefWidth="269.0" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="96.0" />
+      <Label layoutX="14.0" layoutY="27.0" prefHeight="37.0" prefWidth="200.0" text="Vyberte projektor pre editovanie: " AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="27.0" />
+      <Button fx:id="pokracovatButton" layoutX="207.0" layoutY="361.0" mnemonicParsing="false" text="Pokračovať" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="207.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="361.0" />
+      <Button fx:id="zmazatProjektorButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Zmazať projektor" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="361.0" />
+   </children>
+</AnchorPane>

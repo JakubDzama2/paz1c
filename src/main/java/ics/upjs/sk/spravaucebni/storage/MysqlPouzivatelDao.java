@@ -1,6 +1,7 @@
 package ics.upjs.sk.spravaucebni.storage;
 
 import ics.upjs.sk.spravaucebni.Pouzivatel;
+import ics.upjs.sk.spravaucebni.Ucebna;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -67,6 +68,12 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
 
     @Override
     public boolean delete(Long id) {
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        List<Ucebna> ucebne = ucebnaDao.getByPouzivatelId(id);
+        for (Ucebna ucebna : ucebne) {
+            ucebna.setIdPouzivatela(null);
+            ucebnaDao.save(ucebna);
+        }
         String sql = "DELETE FROM pouzivatel WHERE id = " + id;
         try {
             int zmazanych = jdbcTemplate.update(sql);
