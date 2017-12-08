@@ -47,18 +47,17 @@ public class SpotrebaDaoTest {
         s.setDatum(LocalDate.now());
         s.setHodnota(45);
         s.setUcebnaId(1L);
-        dao.save(s);
-        List<Spotreba> all2 = dao.getAll();
-        assertTrue(all.size() + 1 == all2.size());
+        assertTrue(dao.save(s));
+        assertTrue(all.size() + 1 == dao.getAll().size());
     }
     
     @Test
     public void deleteTest() {
         int velkost = dao.getAll().size();
-        Spotreba s = dao.getAll().get(0);
+        Spotreba s = dao.getAll().get(velkost - 1);
         boolean jeZmazany = dao.delete(s.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
-        dao.save(s);
+ //       dao.save(s);
     }
 }

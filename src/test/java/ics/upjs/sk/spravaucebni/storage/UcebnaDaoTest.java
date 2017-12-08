@@ -45,7 +45,7 @@ public class UcebnaDaoTest {
         Ucebna u = new Ucebna();
         u.setNazov("XI.A");
         u.setIdPouzivatela(1L);
-        dao.save(u);
+        assertTrue(dao.save(u));
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
     

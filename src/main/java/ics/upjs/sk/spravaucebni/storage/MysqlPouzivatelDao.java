@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 public class MysqlPouzivatelDao implements PouzivatelDao {
 
     private JdbcTemplate jdbcTemplate;
+    private UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
     
     public MysqlPouzivatelDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -30,8 +31,12 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
                 Pouzivatel pouzivatel = new Pouzivatel();
                 pouzivatel.setId(rs.getLong("id"));
                 pouzivatel.setMeno(rs.getString("meno"));
+                pouzivatel.setHeslo(rs.getString("heslo"));
+                pouzivatel.setSol(rs.getString("sol"));
                 pouzivatel.setPoslednePrihlasenie(rs.getTimestamp("posledne_prihlasenie").toLocalDateTime());
                 pouzivatel.setEmail(rs.getString("email"));
+                pouzivatel.setUcebne(ucebnaDao.getByPouzivatelId(pouzivatel.getId()));
+                
                 return pouzivatel;
             }
             
@@ -56,10 +61,18 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
                 data.put("posledne_prihlasenie", p.getPoslednePrihlasenie());
                 data.put("email", p.getEmail());
                 p.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
+                
             } else {
-                String sql = "UPDATE spotreba SET meno = ?, heslo = ?, sol = ?, posledne_prihlasenie = ?, email = ? WHERE id = " + p.getId();
+                String sql = "UPDATE pouzivatel SET meno = ?, heslo = ?, sol = ?, posledne_prihlasenie = ?, email = ? WHERE id = " + p.getId();
                 jdbcTemplate.update(sql, p.getMeno(), p.getHeslo(), p.getSol(), p.getPoslednePrihlasenie(), p.getEmail());
             }
+            for (Ucebna ucebna : ucebnaDao.getByPouzivatelId(p.getId())) {
+                ucebna.setId(null);
+                ucebnaDao.save(ucebna);
+            }
+            for (Ucebna ucebna : p.getUcebne()) {
+                    ucebnaDao.save(ucebna);
+                }
         } catch (Exception exception) {
             return false;
         }
@@ -68,12 +81,12 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
 
     @Override
     public boolean delete(Long id) {
-        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
         List<Ucebna> ucebne = ucebnaDao.getByPouzivatelId(id);
         for (Ucebna ucebna : ucebne) {
             ucebna.setIdPouzivatela(null);
             ucebnaDao.save(ucebna);
         }
+        
         String sql = "DELETE FROM pouzivatel WHERE id = " + id;
         try {
             int zmazanych = jdbcTemplate.update(sql);

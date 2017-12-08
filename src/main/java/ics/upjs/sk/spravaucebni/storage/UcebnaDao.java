@@ -7,6 +7,8 @@ public interface UcebnaDao {
     
     List<Ucebna> getAll();
     
+    List<Ucebna> getUcebneBezPouzivatelov();
+    
     List<Ucebna> getByPouzivatelId(Long id);
 
     public boolean save(Ucebna u);

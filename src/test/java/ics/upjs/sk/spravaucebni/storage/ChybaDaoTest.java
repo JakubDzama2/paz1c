@@ -44,12 +44,11 @@ public class ChybaDaoTest {
         List<Chyba> all = dao.getAll();
         Chyba ch = new Chyba();
         ch.setCas(LocalDateTime.now());
-        ch.setHlasatelChyby("Ja");
-        ch.setPoznamka("ahoj");
+        ch.setHlasatelChyby("Diminik");
+        ch.setPoznamka("nie su kriedy");
         ch.setUcebnaId(1L);
-        dao.save(ch);
-        List<Chyba> all2 = dao.getAll();
-        assertTrue(all.size() + 1 == all2.size());
+        assertTrue(dao.save(ch));
+        assertTrue(all.size() + 1 == dao.getAll().size());
     }
     
     @Test
@@ -59,6 +58,6 @@ public class ChybaDaoTest {
         boolean jeZmazany = dao.delete(ch.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
-        dao.save(ch);
+//        dao.save(ch);
     }
 }

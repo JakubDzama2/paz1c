@@ -34,7 +34,7 @@ public class PouzivatelDaoTest {
     @After
     public void tearDown() {
     }
-/*
+
     @Test
     public void getAllTest() {
         List<Pouzivatel> pouzivatelia = dao.getAll();
@@ -45,23 +45,22 @@ public class PouzivatelDaoTest {
     public void saveTest() {
         List<Pouzivatel> all = dao.getAll();
         Pouzivatel p = new Pouzivatel();
-        p.setEmail("jan@sranda.sk");
-        p.setMeno("jam");
+        p.setEmail("janicko@srandicka.sk");
+        p.setMeno("janko");
         p.setHeslo("nevadi");
         p.setPoslednePrihlasenie(LocalDateTime.now());
         p.setUcebne(new ArrayList<Ucebna>());
-        dao.save(p);
+        assertTrue(dao.save(p));
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
-    
+
     @Test
     public void deleteTest() {
         int velkost = dao.getAll().size();
-        Pouzivatel p = dao.getAll().get(0);
+        Pouzivatel p = dao.getAll().get(velkost - 1);
         boolean jeZmazany = dao.delete(p.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
 //        dao.save(p);
     }
-*/
 }

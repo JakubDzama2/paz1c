@@ -3,7 +3,6 @@ package ics.upjs.sk.spravaucebni;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class Pouzivatel {
 

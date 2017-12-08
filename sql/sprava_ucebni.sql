@@ -19,11 +19,11 @@ USE `sprava_ucebni` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pouzivatel` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `meno` VARCHAR(100) NOT NULL UNIQUE,
-  `heslo` VARCHAR(45) NOT NULL,
-  `sol` VARCHAR(45) NOT NULL,
+  `meno` VARCHAR(200) NOT NULL UNIQUE,
+  `heslo` CHAR(60) NOT NULL,
+  `sol` CHAR(29) NOT NULL,
   `posledne_prihlasenie` DATETIME NULL,
-  `email` VARCHAR(80) NOT NULL UNIQUE,
+  `email` VARCHAR(100) NOT NULL UNIQUE,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`ucebna` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nazov` VARCHAR(45) NOT NULL UNIQUE,
+  `nazov` VARCHAR(100) NOT NULL UNIQUE,
   `pouzivatel_id` INT,
   PRIMARY KEY (`id`),
   INDEX `fk_ucebna_pouzivatel1_idx` (`pouzivatel_id` ASC),
@@ -51,8 +51,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`projektor` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `pocet_nasvietenych_hodin` INT NOT NULL,
-  `kvalita_obrazu` VARCHAR(100) NOT NULL,
-  `nazov_modelu` VARCHAR(45) NOT NULL,
+  `kvalita_obrazu` VARCHAR(200) NOT NULL,
+  `nazov_modelu` VARCHAR(100) NOT NULL,
   `ocakavana_zivotnost_lampy` INT NOT NULL,
   `ucebna_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -71,8 +71,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pocitac` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `seriove_cislo` VARCHAR(45) NOT NULL UNIQUE,
-  `ucebna_id` INT NOT NULL,
+  `mac_adresa` VARCHAR(100) NOT NULL UNIQUE,
   `posledne_pouzitie` DATETIME DEFAULT now(),
+  `ucebna_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_pocitac_ucebna1_idx` (`ucebna_id` ASC),
   CONSTRAINT `fk_pocitac_ucebna1`
@@ -88,7 +89,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`tabula` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `typ` VARCHAR(45) NOT NULL,
+  `typ` VARCHAR(100) NOT NULL,
   `pocet_pisatiek` INT NOT NULL,
   `ucebna_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -142,8 +143,8 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `sol`, `posledne_prihlasenie`, `email`) VALUES ('Dzama', 'lala', 'soljedla', '2017-12-06 12:45', 'dzama@sranda.ks');
-INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `sol`, `posledne_prihlasenie`, `email`) VALUES ('Karas', 'jaja', 'solslana', '2017-10-23 20:34', 'karas@jaja.aj');
+INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `sol`, `posledne_prihlasenie`, `email`) VALUES ('Dzama', '$2a$10$dHulBDcXGdqjIICmSVnBUO9Za0ahpc1qW.0F7g.8eSGV0AyFZbr3i', '$2a$10$dHulBDcXGdqjIICmSVnBUO', '2017-12-06 12:45', 'dzama@sranda.ks');
+INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `sol`, `posledne_prihlasenie`, `email`) VALUES ('Karas', '$2a$10$LT82ytlN6ngYqSk.YexZreMV6zC9EMMnvIFCA/du3OZFOFu6/MZNy', '$2a$10$LT82ytlN6ngYqSk.YexZre', '2017-10-23 20:34', 'karas@jaja.aj');
 
 INSERT INTO `sprava_ucebni`.`ucebna` (`nazov`, `pouzivatel_id`) VALUES ('SJSP19', '1');
 INSERT INTO `sprava_ucebni`.`ucebna` (`nazov`, `pouzivatel_id`) VALUES ('MP5', '2');
@@ -157,8 +158,8 @@ INSERT INTO `sprava_ucebni`.`spotreba` (`datum`, `hodnota`, `ucebna_id`) VALUES 
 INSERT INTO `sprava_ucebni`.`projektor` (`pocet_nasvietenych_hodin`, `kvalita_obrazu`, `nazov_modelu`, `ocakavana_zivotnost_lampy`, `ucebna_id`) VALUES ('12', 'velmi dobra', 'ARK-87', '8655', '1');
 INSERT INTO `sprava_ucebni`.`projektor` (`pocet_nasvietenych_hodin`, `kvalita_obrazu`, `nazov_modelu`, `ocakavana_zivotnost_lampy`, `ucebna_id`) VALUES ('32', 'fajn', 'A-K-A', '1245', '2');
 
-INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `ucebna_id`, `posledne_pouzitie`) VALUES ('AMD487', '1', '2012-12-12 12:12');
-INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `ucebna_id`, `posledne_pouzitie`) VALUES ('FOR745', '2', '2017-03-25 11:45');
+INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('AMD487', '78sa gh1g 12er qp5i', '2012-12-12 12:12', '1');
+INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('FOR745', 'a45s 54sa qw45 as8s', '2017-03-25 11:45', '2');
 
 INSERT INTO `sprava_ucebni`.`chyba` (`poznamka`, `cas`, `hlasatel_chyby`, `ucebna_id`) VALUES ('piska tabula', '2017-12-06 17:00', 'Jakub Dzama', '1');
 INSERT INTO `sprava_ucebni`.`chyba` (`poznamka`, `cas`, `hlasatel_chyby`, `ucebna_id`) VALUES ('negunguje pocitac AMD478', '2017-12-07 14:48', 'Viktor Olejar', '2');

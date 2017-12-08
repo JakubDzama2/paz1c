@@ -6,6 +6,7 @@ public class Pocitac {
 
     private Long id;
     private String serioveCislo;
+    private String macAdresa;
     private LocalDateTime poslednePouzitie;
     private Long ucebnaId;
 
@@ -39,6 +40,14 @@ public class Pocitac {
 
     public void setPoslednePouzitie(LocalDateTime poslednePouzitie) {
         this.poslednePouzitie = poslednePouzitie;
+    }
+
+    public String getMacAdresa() {
+        return macAdresa;
+    }
+
+    public void setMacAdresa(String macAdresa) {
+        this.macAdresa = macAdresa;
     }
     
     

@@ -40,7 +40,12 @@ public class MysqlUcebnaDao implements UcebnaDao {
                 return u;
             }
         });
+        naplnUcebne(ucebne);
         
+        return ucebne;
+    }
+    
+    private void naplnUcebne(List<Ucebna> ucebne) {
         for (Ucebna u : ucebne) {
             u.setTabule(tabulaDao.getByUcebnaId(u.getId()));
             u.setPocitace(pocitacDao.getByUcebnaId(u.getId()));
@@ -48,12 +53,29 @@ public class MysqlUcebnaDao implements UcebnaDao {
             u.setSpotreby(spotrebaDao.getByUcebnaId(u.getId()));
             u.setChyby(chybaDao.getByUcebnaId(u.getId()));
         }
+    }
+    
+    @Override
+    public List<Ucebna> getByPouzivatelId(Long id) {
+        String sql = "SELECT id, nazov FROM ucebna WHERE pouzivatel_id = " + id  + " ORDER BY id";
+        List<Ucebna> ucebne = jdbcTemplate.query(sql, new RowMapper<Ucebna>() {
+            @Override
+            public Ucebna mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Ucebna u = new Ucebna();
+                u.setId(rs.getLong("id"));
+                u.setNazov(rs.getString("nazov"));
+                u.setIdPouzivatela(id);
+                return u;
+            }
+        });
+
+        naplnUcebne(ucebne);
         return ucebne;
     }
 
     @Override
-    public List<Ucebna> getByPouzivatelId(Long id) {
-        String sql = "SELECT id, nazov FROM ucebna WHERE pouzivatel_id = " + id  + " ORDER BY id";
+    public List<Ucebna> getUcebneBezPouzivatelov() {
+        String sql = "SELECT id, nazov FROM ucebna WHERE pouzivatel_id IS NULL ORDER BY id";
         List<Ucebna> ucebne = jdbcTemplate.query(sql, new RowMapper<Ucebna>() {
             @Override
             public Ucebna mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -64,13 +86,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
             }
         });
 
-        for (Ucebna u : ucebne) {
-            u.setTabule(tabulaDao.getByUcebnaId(u.getId()));
-            u.setPocitace(pocitacDao.getByUcebnaId(u.getId()));
-            u.setProjektory(projektorDao.getByUcebnaId(u.getId()));
-            u.setSpotreby(spotrebaDao.getByUcebnaId(u.getId()));
-            u.setChyby(chybaDao.getByUcebnaId(u.getId()));
-        }
+        naplnUcebne(ucebne);
         return ucebne;
     }
 
@@ -89,12 +105,12 @@ public class MysqlUcebnaDao implements UcebnaDao {
                 data.put("nazov", u.getNazov());
                 data.put("pouzivatel_id", u.getIdPouzivatela());
                 u.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-                savePrvkyUcebne(u);
-                
             } else {
+  //              delete(u.getId());
                 String sql = "UPDATE ucebna SET nazov = ?, pouzivatel_id = ? WHERE id = " + u.getId();
-                jdbcTemplate.update(sql, u.getNazov(), u.getIdPouzivatela());
+                jdbcTemplate.update(sql, u.getNazov(), u.getIdPouzivatela());                
             }
+            savePrvkyUcebne(u);
         } catch (Exception exception) {
             return false;
         }
@@ -103,7 +119,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
     
     private void savePrvkyUcebne(Ucebna u) {
         for (Chyba chyba : u.getChyby()) {
-                chybaDao.save(chyba);
+            chybaDao.save(chyba);
         }
         for (Pocitac pocitac : u.getPocitace()) {
             pocitacDao.save(pocitac);
@@ -121,6 +137,9 @@ public class MysqlUcebnaDao implements UcebnaDao {
 
     @Override
     public boolean delete(Long id) {
+        if (id == null) {
+            return false;
+        }
         String sql = "DELETE FROM ucebna WHERE id = " + id;
         try {
             int zmazanych = jdbcTemplate.update(sql);

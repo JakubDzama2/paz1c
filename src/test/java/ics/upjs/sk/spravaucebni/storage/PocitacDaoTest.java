@@ -32,7 +32,7 @@ public class PocitacDaoTest {
     @After
     public void tearDown() {
     }
- /*
+ 
     @Test
     public void getAllTest() {
         List<Pocitac> all = dao.getAll();
@@ -44,20 +44,20 @@ public class PocitacDaoTest {
         List<Pocitac> all = dao.getAll();
         Pocitac pocitac = new Pocitac();
         pocitac.setPoslednePouzitie(LocalDateTime.now());
-        pocitac.setSerioveCislo("asdsdsa");
+        pocitac.setSerioveCislo("Rambo2000");
+        pocitac.setMacAdresa("ajaj 12sd m5b4 8e9o");
         pocitac.setUcebnaId(1L);
-        dao.save(pocitac);
+        assertTrue(dao.save(pocitac));
         assertTrue(all.size() + 1 == dao.getAll().size());
+        
     }
     
     @Test
     public void deleteTest() {
         int velkost = dao.getAll().size();
-        Pocitac p = dao.getAll().get(0);
+        Pocitac p = dao.getAll().get(velkost - 1);
         boolean jeVymazany = dao.delete(p.getId());
-        assertTrue(velkost - 1 == dao.getAll().size());
         assertTrue(jeVymazany);
-        dao.save(p);
     }
-*/
+
 }

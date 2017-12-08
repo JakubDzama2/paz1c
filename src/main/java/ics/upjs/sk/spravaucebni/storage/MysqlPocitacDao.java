@@ -20,13 +20,14 @@ public class MysqlPocitacDao implements PocitacDao {
 
     @Override
     public List<Pocitac> getAll() {
-        String sql = "SELECT id, seriove_cislo, posledne_pouzitie, ucebna_id FROM pocitac ORDER BY id";
+        String sql = "SELECT id, seriove_cislo, mac_adresa, posledne_pouzitie, ucebna_id FROM pocitac ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Pocitac>() {
             @Override
             public Pocitac mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Pocitac pocitac = new Pocitac();
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
+                pocitac.setMacAdresa(rs.getString("mac_adresa"));
                 pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
@@ -36,13 +37,14 @@ public class MysqlPocitacDao implements PocitacDao {
 
     @Override
     public List<Pocitac> getByUcebnaId(Long id) {
-        String sql = "SELECT id, seriove_cislo, posledne_pouzitie, ucebna_id FROM pocitac WHERE ucebna_id = " + id + " ORDER BY id";
+        String sql = "SELECT id, seriove_cislo, mac_adresa, posledne_pouzitie, ucebna_id FROM pocitac WHERE ucebna_id = " + id + " ORDER BY id";
         return jdbcTemplate.query(sql, new RowMapper<Pocitac>() {
             @Override
             public Pocitac mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Pocitac pocitac = new Pocitac();
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
+                pocitac.setMacAdresa(rs.getString("mac_adresa"));
                 pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
@@ -60,15 +62,16 @@ public class MysqlPocitacDao implements PocitacDao {
                 SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
                 simpleJdbcInsert.withTableName("pocitac");
                 simpleJdbcInsert.usingGeneratedKeyColumns("id");
-                simpleJdbcInsert.usingColumns("seriove_cislo", "posledne_pouzitie", "ucebna_id");
+                simpleJdbcInsert.usingColumns("seriove_cislo", "mac_adresa", "posledne_pouzitie", "ucebna_id");
                 Map<String, Object> data = new HashMap<>();
                 data.put("seriove_cislo", pocitac.getSerioveCislo());
+                data.put("mac_adresa", pocitac.getMacAdresa());
                 data.put("posledne_pouzitie", pocitac.getPoslednePouzitie());
                 data.put("ucebna_id", pocitac.getUcebnaId());
                 pocitac.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
             } else {
-                String sql = "UPDATE pocitac SET seriove_cislo = ?, posledne_pouzitie = ?, ucebna_id = ? WHERE id = " + pocitac.getId();
-                jdbcTemplate.update(sql, pocitac.getSerioveCislo(), pocitac.getPoslednePouzitie(), pocitac.getUcebnaId());
+                String sql = "UPDATE pocitac SET seriove_cislo = ?, mac_adresa = ?, posledne_pouzitie = ?, ucebna_id = ? WHERE id = " + pocitac.getId();
+                jdbcTemplate.update(sql, pocitac.getSerioveCislo(), pocitac.getMacAdresa(), pocitac.getPoslednePouzitie(), pocitac.getUcebnaId());
             }
         } catch (Exception exception) {
             return false;

@@ -47,7 +47,7 @@ public class ProjektorDaoTest {
         p.setOcakavanaZivotnostLampy(457);
         p.setPocetNasvietenychHodin(4564);
         p.setUcebnaId(1L);
-        dao.save(p);
+        assertTrue(dao.save(p));
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
     
@@ -58,6 +58,6 @@ public class ProjektorDaoTest {
         boolean jeZmazany = dao.delete(p.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
-        dao.save(p);
+//        dao.save(p);
     }
 }
