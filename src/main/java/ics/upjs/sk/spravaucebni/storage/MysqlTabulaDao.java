@@ -51,6 +51,24 @@ public class MysqlTabulaDao implements TabulaDao {
     }
 
     @Override
+    public Tabula getById(Long id) {
+        String sql = "SELECT id, typ, pocet_pisatiek, ucebna_id FROM tabula WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new RowMapper<Tabula> () {
+            @Override
+            public Tabula mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Tabula tabula = new Tabula();
+                tabula.setId(rs.getLong("id"));
+                tabula.setTyp(rs.getString("typ"));
+                tabula.setPocetPisatiek(rs.getInt("pocet_pisatiek"));
+                tabula.setUcebnaId(rs.getLong("ucebna_id"));
+                return tabula;
+            }
+        });
+    }
+    
+    
+
+    @Override
     public boolean save(Tabula t) {
         if (t == null) {
             return false;

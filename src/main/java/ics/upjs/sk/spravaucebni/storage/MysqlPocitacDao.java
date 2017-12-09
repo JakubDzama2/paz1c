@@ -53,6 +53,25 @@ public class MysqlPocitacDao implements PocitacDao {
     }
 
     @Override
+    public Pocitac getById(Long id) {
+        String sql = "SELECT id, seriove_cislo, mac_adresa, posledne_pouzitie, ucebna_id FROM pocitac WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new RowMapper<Pocitac>() {
+            @Override
+            public Pocitac mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Pocitac pocitac = new Pocitac();
+                pocitac.setId(rs.getLong("id"));
+                pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
+                pocitac.setMacAdresa(rs.getString("mac_adresa"));
+                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
+                pocitac.setUcebnaId(rs.getLong("ucebna_id"));
+                return pocitac;
+            }
+        });
+    }
+    
+    
+
+    @Override
     public boolean save(Pocitac pocitac) {
         if (pocitac == null) {
             return false;

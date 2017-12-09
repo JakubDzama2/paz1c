@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class Demo {
 
     public static void main(String[] args) {
-        
+        /*
         UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
         List<Ucebna> ucebne = ucebnaDao.getAll();
         
@@ -46,7 +46,7 @@ public class Demo {
         spotreba.setUcebnaId(1L);
         spotreba.setHodnota(230);
         spotrebaDao.save(spotreba);
-*/
+*//*
         SpotrebaDao spotrebaDao = DaoFactory.INSTANCE.getSpotrebaDao();
 
         List<Spotreba> spotreby = spotrebaDao.getAll();
@@ -112,6 +112,32 @@ public class Demo {
         String hash = BCrypt.hashpw("jaja", sol);
         System.out.println(hash + "  " + hash.length());
         */
+        PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
+        Pouzivatel p = pouzivatelDao.getById(pouzivatelDao.getAll().get(0).getId());
+        for (Ucebna u : p.getUcebne()) {
+            
         
+        System.out.println(u.getNazov());
+            
+        for (Chyba chyba : u.getChyby()) {
+            System.out.println(chyba.getCas() + " " + chyba.getHlasatelChyby());
+        }
+        
+        for (Pocitac pocitac : u.getPocitace()) {
+            System.out.println(pocitac.getSerioveCislo());
+        }
+        
+        for (Projektor projektor : u.getProjektory()) {
+            System.out.println(projektor.getNazovModelu());
+        }
+        
+        for (Spotreba s : u.getSpotreby()) {
+            System.out.println(s.getHodnota());
+        }
+        
+        for (Tabula tabula : u.getTabule()) {
+            System.out.println(tabula.getTyp());
+        }
+        }
     }
 }

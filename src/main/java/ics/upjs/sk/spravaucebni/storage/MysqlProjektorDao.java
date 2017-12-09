@@ -55,6 +55,26 @@ public class MysqlProjektorDao implements ProjektorDao {
     }
 
     @Override
+    public Projektor getById(Long id) {
+        String sql = "SELECT id, pocet_nasvietenych_hodin, kvalita_obrazu, nazov_modelu, ocakavana_zivotnost_lampy, ucebna_id FROM projektor WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new RowMapper<Projektor>() {
+            @Override
+            public Projektor mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Projektor projektor = new Projektor();
+                projektor.setId(rs.getLong("id"));
+                projektor.setPocetNasvietenychHodin(rs.getInt("pocet_nasvietenych_hodin"));
+                projektor.setKvalitaObrazu(rs.getString("kvalita_obrazu"));
+                projektor.setNazovModelu(rs.getString("nazov_modelu"));
+                projektor.setOcakavanaZivotnostLampy(rs.getInt("ocakavana_zivotnost_lampy"));
+                projektor.setUcebnaId(rs.getLong("ucebna_id"));
+                return projektor;
+            }
+        });
+    }
+
+    
+    
+    @Override
     public boolean save(Projektor p) {
         if (p == null) {
             return false;

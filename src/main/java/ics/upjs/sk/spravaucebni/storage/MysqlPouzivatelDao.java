@@ -44,6 +44,29 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
     } 
 
     @Override
+    public Pouzivatel getById(Long id) {
+        String sql = "SELECT * FROM pouzivatel WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new RowMapper<Pouzivatel>() {
+            @Override
+            public Pouzivatel mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Pouzivatel pouzivatel = new Pouzivatel();
+                pouzivatel.setId(rs.getLong("id"));
+                pouzivatel.setMeno(rs.getString("meno"));
+                pouzivatel.setHeslo(rs.getString("heslo"));
+                pouzivatel.setSol(rs.getString("sol"));
+                pouzivatel.setPoslednePrihlasenie(rs.getTimestamp("posledne_prihlasenie").toLocalDateTime());
+                pouzivatel.setEmail(rs.getString("email"));
+                pouzivatel.setUcebne(ucebnaDao.getByPouzivatelId(pouzivatel.getId()));
+                
+                return pouzivatel;
+            }
+            
+        });
+    }
+
+    
+    
+    @Override
     public boolean save(Pouzivatel p) {
         if (p == null) {
             return false;

@@ -11,6 +11,8 @@ public interface UcebnaDao {
     
     List<Ucebna> getByPouzivatelId(Long id);
 
+    public Ucebna getById(Long id);
+    
     public boolean save(Ucebna u);
     
     public boolean delete(Long id);

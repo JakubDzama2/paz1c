@@ -9,6 +9,8 @@ public interface ChybaDao {
 
     public List<Chyba> getByUcebnaId(Long id);
     
+    public Chyba getById(Long id);
+    
     public boolean save(Chyba chyba);
     
     public boolean delete(Long id);

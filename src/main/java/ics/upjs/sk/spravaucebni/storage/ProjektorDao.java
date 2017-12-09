@@ -8,6 +8,8 @@ public interface ProjektorDao {
     List<Projektor> getAll();
 
     public List<Projektor> getByUcebnaId(Long id);
+    
+    public Projektor getById(Long id);
 
     public boolean save(Projektor p);
     

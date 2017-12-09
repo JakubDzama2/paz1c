@@ -8,6 +8,8 @@ public interface TabulaDao {
     List<Tabula> getAll();
 
     public List<Tabula> getByUcebnaId(Long id);
+    
+    public Tabula getById(Long id);
 
     public boolean save(Tabula t);
     

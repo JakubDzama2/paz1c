@@ -74,6 +74,29 @@ public class MysqlUcebnaDao implements UcebnaDao {
     }
 
     @Override
+    public Ucebna getById(Long id) {
+        String sql = "SELECT id, nazov FROM ucebna WHERE id = " + id;
+        Ucebna ucebna = jdbcTemplate.queryForObject(sql, new RowMapper<Ucebna>() {
+            @Override
+            public Ucebna mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Ucebna u = new Ucebna();
+                u.setId(rs.getLong("id"));
+                u.setNazov(rs.getString("nazov"));
+                u.setIdPouzivatela(id);
+                return u;
+            }
+        });
+        ucebna.setTabule(tabulaDao.getByUcebnaId(ucebna.getId()));
+        ucebna.setPocitace(pocitacDao.getByUcebnaId(ucebna.getId()));
+        ucebna.setProjektory(projektorDao.getByUcebnaId(ucebna.getId()));
+        ucebna.setSpotreby(spotrebaDao.getByUcebnaId(ucebna.getId()));
+        ucebna.setChyby(chybaDao.getByUcebnaId(ucebna.getId()));
+        return ucebna;
+    }
+    
+    
+
+    @Override
     public List<Ucebna> getUcebneBezPouzivatelov() {
         String sql = "SELECT id, nazov FROM ucebna WHERE pouzivatel_id IS NULL ORDER BY id";
         List<Ucebna> ucebne = jdbcTemplate.query(sql, new RowMapper<Ucebna>() {

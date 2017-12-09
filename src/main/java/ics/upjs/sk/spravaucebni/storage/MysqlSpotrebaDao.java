@@ -51,6 +51,24 @@ public class MysqlSpotrebaDao implements SpotrebaDao {
     }
 
     @Override
+    public Spotreba getById(Long id) {
+        String sql = "SELECT id, datum, hodnota, ucebna_id FROM spotreba WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new RowMapper<Spotreba> () {
+            @Override
+            public Spotreba mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Spotreba spotreba = new Spotreba();
+                spotreba.setId(rs.getLong("id"));
+                spotreba.setHodnota(rs.getInt("hodnota"));
+                spotreba.setDatum(rs.getDate("datum").toLocalDate());
+                spotreba.setUcebnaId(rs.getLong("ucebna_id"));
+                return spotreba;
+            }
+        });
+    }
+    
+    
+
+    @Override
     public boolean save(Spotreba spotreba) {
         if (spotreba == null) {
             return false;

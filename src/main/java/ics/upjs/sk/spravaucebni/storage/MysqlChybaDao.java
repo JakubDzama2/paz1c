@@ -30,6 +30,7 @@ public class MysqlChybaDao implements ChybaDao {
         });
     }
 
+    
     @Override
     public List<Chyba> getByUcebnaId(Long id) {
         String sql = "SELECT id, poznamka, cas, hlasatel_chyby, ucebna_id FROM chyba WHERE ucebna_id = " + id + " ORDER BY id";
@@ -43,6 +44,22 @@ public class MysqlChybaDao implements ChybaDao {
             return chyba;
         });
     }
+
+    @Override
+    public Chyba getById(Long id) {
+        String sql = "SELECT id, poznamka, cas, hlasatel_chyby, ucebna_id FROM chyba WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, (ResultSet rs, int rowNum) -> {
+            Chyba chyba = new Chyba();
+            chyba.setId(rs.getLong("id"));
+            chyba.setPoznamka(rs.getString("poznamka"));
+            chyba.setCas(rs.getTimestamp("cas").toLocalDateTime());
+            chyba.setHlasatelChyby(rs.getString("hlasatel_chyby"));
+            chyba.setUcebnaId(rs.getLong("ucebna_id"));
+            return chyba;
+        });
+    }
+    
+    
 
     @Override
     public boolean save(Chyba chyba) {
