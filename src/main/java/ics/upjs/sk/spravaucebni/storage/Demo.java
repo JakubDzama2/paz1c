@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class Demo {
 
     public static void main(String[] args) {
-        /*
+        
         UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
         List<Ucebna> ucebne = ucebnaDao.getAll();
         
@@ -26,27 +26,27 @@ public class Demo {
         List<Pocitac> pocitace = pocitacDao.getByUcebnaId(1L);
         
         PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
-        Pouzivatel p = new Pouzivatel();
-        p.setEmail("dominik@srandicka.sk");
-        p.setMeno("Dominik");
-        p.setHeslo("elrond");
-        p.setPoslednePrihlasenie(LocalDateTime.now());
-        p.setUcebne(new ArrayList<Ucebna>());
-        pouzivatelDao.save(p);
+//        Pouzivatel p = new Pouzivatel();
+//        p.setEmail("dominik@srandicka.sk");
+//        p.setMeno("Dominik");
+//        p.setHeslo("elrond");
+//        p.setPoslednePrihlasenie(LocalDateTime.now());
+//        p.setUcebne(new ArrayList<Ucebna>());
+//        pouzivatelDao.save(p);
         List<Pouzivatel> pouzivatelia = pouzivatelDao.getAll();
         
         ProjektorDao projektorDao = DaoFactory.INSTANCE.getProjektorDao();
        
         List<Projektor> projektory = projektorDao.getAll();
         
-        /*
-        Spotreba spotreba = new Spotreba();
-        spotreba.setId(2L);
-        spotreba.setCas(LocalDateTime.now());
-        spotreba.setUcebnaId(1L);
-        spotreba.setHodnota(230);
-        spotrebaDao.save(spotreba);
-*//*
+        
+//        Spotreba spotreba = new Spotreba();
+//        spotreba.setId(2L);
+//        spotreba.setCas(LocalDateTime.now());
+//        spotreba.setUcebnaId(1L);
+//        spotreba.setHodnota(230);
+//        spotrebaDao.save(spotreba);
+
         SpotrebaDao spotrebaDao = DaoFactory.INSTANCE.getSpotrebaDao();
 
         List<Spotreba> spotreby = spotrebaDao.getAll();
@@ -111,7 +111,7 @@ public class Demo {
         System.out.println(sol + "  " + sol.length());
         String hash = BCrypt.hashpw("jaja", sol);
         System.out.println(hash + "  " + hash.length());
-        */
+        
         PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
         Pouzivatel p = pouzivatelDao.getById(pouzivatelDao.getAll().get(0).getId());
         for (Ucebna u : p.getUcebne()) {
@@ -139,5 +139,6 @@ public class Demo {
             System.out.println(tabula.getTyp());
         }
         }
+*/
     }
 }

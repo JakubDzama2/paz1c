@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainMenuSceneController {
@@ -25,9 +26,6 @@ public class MainMenuSceneController {
     private Button upravitPouzivatelaButton;
 
     @FXML
-    private Button pridatUcebnuButton;
-
-    @FXML
     private Button upravitUcebnuButton;
 
     @FXML
@@ -35,24 +33,20 @@ public class MainMenuSceneController {
        
         pridatPouzivatelaButton.setOnAction(eh -> {
              NovyPouzivatelSceneController controller = new NovyPouzivatelSceneController();
-             nextWindow(controller,"NovyPouzivatelScene.fxml");
-        });
-        pridatUcebnuButton.setOnAction(eh -> {
-            NovaUcebnaSceneController controller = new NovaUcebnaSceneController();
-            nextWindow(controller,"NovaUcebnaScene.fxml");
+             nextWindow(controller,"NovyPouzivatelScene.fxml", "Vytvorenie nového použivateľa");
         });
         upravitPouzivatelaButton.setOnAction(eh -> {
             ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();
-            nextWindow(controller,"ZmazatPouzivatelaScene.fxml");
+            nextWindow(controller,"ZmazatPouzivatelaScene.fxml", "Úprava použivateľa");
         });
         upravitUcebnuButton.setOnAction(eh -> {
-            ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();
-            nextWindow(controller,"VyberUcebnuScene.fxml");
+            VyberUcebnuSceneController controller = new VyberUcebnuSceneController();
+            nextWindow(controller,"VyberUcebnuScene.fxml", "Výber učebne");
         });
     }
     
     
-    private void nextWindow (Object controller, String resourceFXMLString){
+    private void nextWindow (Object controller, String resourceFXMLString, String title){
          try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource(resourceFXMLString));
@@ -63,10 +57,10 @@ public class MainMenuSceneController {
 
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("");
+            stage.setTitle(title);
           
-
-            stage.show();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
         } catch (IOException iOException) {
             iOException.printStackTrace();
         }

@@ -30,13 +30,14 @@ public class MysqlUcebnaDao implements UcebnaDao {
 
     @Override
     public List<Ucebna> getAll() {
-        String sql = "SELECT id, nazov FROM ucebna ORDER BY id";
+        String sql = "SELECT id, nazov, pouzivatel_id FROM ucebna ORDER BY id";
         List<Ucebna> ucebne = jdbcTemplate.query(sql, new RowMapper<Ucebna>() {
             @Override
             public Ucebna mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Ucebna u = new Ucebna();
                 u.setId(rs.getLong("id"));
                 u.setNazov(rs.getString("nazov"));
+                u.setIdPouzivatela(rs.getLong("pouzivatel_id"));
                 return u;
             }
         });
@@ -75,14 +76,14 @@ public class MysqlUcebnaDao implements UcebnaDao {
 
     @Override
     public Ucebna getById(Long id) {
-        String sql = "SELECT id, nazov FROM ucebna WHERE id = " + id;
+        String sql = "SELECT id, nazov, pouzivatel_id FROM ucebna WHERE id = " + id;
         Ucebna ucebna = jdbcTemplate.queryForObject(sql, new RowMapper<Ucebna>() {
             @Override
             public Ucebna mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Ucebna u = new Ucebna();
-                u.setId(rs.getLong("id"));
+                u.setId(id);
                 u.setNazov(rs.getString("nazov"));
-                u.setIdPouzivatela(id);
+                u.setIdPouzivatela(rs.getLong("pouzivatel_id"));
                 return u;
             }
         });

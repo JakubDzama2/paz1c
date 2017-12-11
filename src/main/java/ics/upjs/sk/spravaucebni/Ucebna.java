@@ -1,5 +1,7 @@
 package ics.upjs.sk.spravaucebni;
 
+import ics.upjs.sk.spravaucebni.storage.DaoFactory;
+import ics.upjs.sk.spravaucebni.storage.PouzivatelDao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +80,12 @@ public class Ucebna {
 
     public void setIdPouzivatela(Long idPouzivatela) {
         this.idPouzivatela = idPouzivatela;
+    }
+
+    @Override
+    public String toString() {
+        PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
+        return nazov + "     " + pouzivatelDao.getById(idPouzivatela).getMeno();
     }
     
     
