@@ -40,5 +40,11 @@ public class Spotreba {
     public void setUcebnaId(Long ucebnaId) {
         this.ucebnaId = ucebnaId;
     }
+
+    @Override
+    public String toString() {
+        return getDatum() + " : " + getHodnota();
+    }
+    
     
 }

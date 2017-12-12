@@ -85,7 +85,7 @@ public class Ucebna {
     @Override
     public String toString() {
         PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
-        return nazov + "     " + pouzivatelDao.getById(idPouzivatela).getMeno();
+        return getNazov() + "     " + pouzivatelDao.getById(idPouzivatela).getMeno();
     }
     
     

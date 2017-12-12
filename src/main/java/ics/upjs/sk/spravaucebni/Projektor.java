@@ -56,5 +56,11 @@ public class Projektor {
     public void setUcebnaId(Long ucebnaId) {
         this.ucebnaId = ucebnaId;
     }
+
+    @Override
+    public String toString() {
+        return getNazovModelu();
+    }
+    
     
 }

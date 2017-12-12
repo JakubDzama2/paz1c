@@ -81,6 +81,11 @@ public class Pouzivatel {
     public void setSol(String sol) {
         this.sol = sol;
     }
+
+    @Override
+    public String toString() {
+        return getMeno();
+    }
     
     
 

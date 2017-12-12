@@ -49,6 +49,11 @@ public class Pocitac {
     public void setMacAdresa(String macAdresa) {
         this.macAdresa = macAdresa;
     }
+
+    @Override
+    public String toString() {
+        return getSerioveCislo();
+    }
     
     
 }

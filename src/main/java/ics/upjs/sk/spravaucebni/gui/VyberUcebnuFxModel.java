@@ -19,11 +19,10 @@ public class VyberUcebnuFxModel {
     private ObjectProperty<Ucebna> vybrataUcebna = new SimpleObjectProperty<Ucebna>();
     
     public VyberUcebnuFxModel() {
-//        List<String> riadkyString = new ArrayList<>();
-//        for (Ucebna ucebna : ucebnaDao.getAll()) {
-//            String s = ucebna.getNazov() + "     " + pouzivatelDao.getById(ucebna.getIdPouzivatela()).getMeno();
-//            riadkyString.add(s);
-//        }
+        inicializuj();
+    }
+    
+    public void inicializuj() {
         setVybrataUcebna(null);
         this.ucebne.setAll(ucebnaDao.getAll());
     }

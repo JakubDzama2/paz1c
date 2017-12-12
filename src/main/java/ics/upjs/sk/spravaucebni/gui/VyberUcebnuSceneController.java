@@ -39,7 +39,7 @@ public class VyberUcebnuSceneController {
     private Button pokracovatButton;
     
     @FXML
-    private Button vytvoritNovuButton;
+    private Button pridatButton;
     
     @FXML
     private Button zmazatButton;
@@ -52,18 +52,19 @@ public class VyberUcebnuSceneController {
         
     @FXML
     void initialize() {
-        this.model = new VyberUcebnuFxModel();
         vyberUcebnuListView.setItems(model.getUcebne());
-        vyberUcebnuListView.setEditable(false);    
         zmazatButton.setDisable(true);
+        pokracovatButton.setDisable(true);
         vyberUcebnuListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Ucebna>() {
             @Override
             public void changed(ObservableValue<? extends Ucebna> observable, Ucebna oldValue, Ucebna newValue) {
                 model.setVybrataUcebna(newValue);
                 if (newValue == null) {
                     zmazatButton.setDisable(true);
+                    pokracovatButton.setDisable(true);
                 } else {
                     zmazatButton.setDisable(false);
+                    pokracovatButton.setDisable(false);
                 }
             }
         });
@@ -82,19 +83,17 @@ public class VyberUcebnuSceneController {
             UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
             Ucebna ucebna = model.getVybrataUcebna();
             ucebnaDao.delete(ucebna.getId());
-            model.getUcebne().clear();
-            model.getUcebne().setAll(ucebnaDao.getAll());
-            model.setVybrataUcebna(null);
+            model.inicializuj();
         });
         
-        vytvoritNovuButton.setOnAction(eh -> {
+        pridatButton.setOnAction(eh -> {
             NovaUcebnaSceneController controller = new NovaUcebnaSceneController();
             nextWindow(controller,"NovaUcebnaScene.fxml", "Vytvorenie novej učebne");
             
         });
         
         pokracovatButton.setOnAction(eh -> {
-            EditUcebnaSceneController controller = new EditUcebnaSceneController();
+            EditUcebnaSceneController controller = new EditUcebnaSceneController(model.getVybrataUcebna());
             nextWindow(controller,"EditUcebnaScene.fxml", "Výber atribútov učebne");
         });
     }
