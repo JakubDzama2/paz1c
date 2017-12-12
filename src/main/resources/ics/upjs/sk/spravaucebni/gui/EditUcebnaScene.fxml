@@ -11,9 +11,10 @@
       <HBox alignment="CENTER" layoutX="18.0" layoutY="82.0" prefHeight="214.0" prefWidth="458.0" spacing="20.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="82.0">
          <children>
             <Button fx:id="pocitaceButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Počítače" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="projektorButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Projektor" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="tabuleButton" mnemonicParsing="false" prefHeight="158.0" prefWidth="107.0" text="Tabule" />
+            <Button fx:id="projektoryButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Projektory" textAlignment="CENTER" wrapText="true" />
             <Button fx:id="spotrebaButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Spotreba" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="spravyButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Správy k učebni" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="spravyButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Správy" textAlignment="CENTER" wrapText="true" />
          </children>
       </HBox>
    </children>

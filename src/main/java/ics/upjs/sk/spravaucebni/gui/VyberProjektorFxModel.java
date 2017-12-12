@@ -1,7 +1,6 @@
 package ics.upjs.sk.spravaucebni.gui;
 
 import ics.upjs.sk.spravaucebni.Projektor;
-import ics.upjs.sk.spravaucebni.Ucebna;
 import ics.upjs.sk.spravaucebni.storage.DaoFactory;
 import ics.upjs.sk.spravaucebni.storage.ProjektorDao;
 import javafx.beans.property.ObjectProperty;
@@ -16,8 +15,8 @@ public class VyberProjektorFxModel {
     private ProjektorDao projektorDao = DaoFactory.INSTANCE.getProjektorDao();
     private Long ucebnaId;
     
-    public VyberProjektorFxModel(Ucebna ucebna) {
-        ucebnaId = ucebna.getId();
+    public VyberProjektorFxModel(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
         inicializuj();
     }
     

@@ -85,7 +85,12 @@ public class Ucebna {
     @Override
     public String toString() {
         PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
-        return getNazov() + "     " + pouzivatelDao.getById(idPouzivatela).getMeno();
+        if (idPouzivatela != null) {
+            System.out.println("pred vypisanim");
+            return getNazov() + "     " + pouzivatelDao.getById(idPouzivatela).getMeno();
+        } else {
+            return getNazov() + "     nemá správcu";
+        }
     }
     
     

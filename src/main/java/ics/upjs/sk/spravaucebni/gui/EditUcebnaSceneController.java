@@ -46,12 +46,16 @@ public class EditUcebnaSceneController {
         
         
         pocitaceButton.setOnAction(eh -> {
-             VyberPocitacSceneController controller = new VyberPocitacSceneController(ucebna);
+             VyberPocitacSceneController controller = new VyberPocitacSceneController(ucebna.getId());
              nextWindow(controller,"VyberPocitacScene.fxml", "Počítače učebne: " + ucebna.getNazov());
         });
         projektoryButton.setOnAction(eh -> {
-            VyberProjektorSceneController controller = new VyberProjektorSceneController(ucebna);
+            VyberProjektorSceneController controller = new VyberProjektorSceneController(ucebna.getId());
             nextWindow(controller,"VyberProjektorScene.fxml", "Projektory učebne: " + ucebna.getNazov());
+        });
+        tabuleButton.setOnAction(eh -> {
+            VyberTabuluSceneController controller = new VyberTabuluSceneController(ucebna.getId());
+            nextWindow(controller,"VyberTabuluScene.fxml", "Tabule učebne: " + ucebna.getNazov());
         });
  //       spotrebaButton.setOnAction(eh -> {
  //           ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();

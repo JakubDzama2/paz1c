@@ -41,11 +41,11 @@ public class VyberPocitacSceneController {
     private Button pokracovatButton;
 
     private VyberPocitacFxModel model;
-    private Ucebna ucebna;
+    private Long ucebnaId;
 
-    public VyberPocitacSceneController(Ucebna ucebna) {
-        this.ucebna = ucebna;
-        this.model = new VyberPocitacFxModel(ucebna);
+    public VyberPocitacSceneController(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
+        this.model = new VyberPocitacFxModel(ucebnaId);
     }
     
     @FXML

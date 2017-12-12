@@ -17,8 +17,8 @@ public class VyberPocitacFxModel {
     private PocitacDao pocitacDao = DaoFactory.INSTANCE.getPocitacDao();
     private Long ucebnaId;
     
-    public VyberPocitacFxModel(Ucebna ucebna) {
-        ucebnaId = ucebna.getId();
+    public VyberPocitacFxModel(Long ucebnaId) {
+        this.ucebnaId = ucebnaId;
         inicializuj();
     }
     

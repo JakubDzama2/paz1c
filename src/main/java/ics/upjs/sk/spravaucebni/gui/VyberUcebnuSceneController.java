@@ -43,6 +43,9 @@ public class VyberUcebnuSceneController {
     
     @FXML
     private Button zmazatButton;
+        
+    @FXML
+    private Button editovatButton;
     
     private VyberUcebnuFxModel model;
 
@@ -55,6 +58,7 @@ public class VyberUcebnuSceneController {
         vyberUcebnuListView.setItems(model.getUcebne());
         zmazatButton.setDisable(true);
         pokracovatButton.setDisable(true);
+        editovatButton.setDisable(true);
         vyberUcebnuListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Ucebna>() {
             @Override
             public void changed(ObservableValue<? extends Ucebna> observable, Ucebna oldValue, Ucebna newValue) {
@@ -62,9 +66,11 @@ public class VyberUcebnuSceneController {
                 if (newValue == null) {
                     zmazatButton.setDisable(true);
                     pokracovatButton.setDisable(true);
+                    editovatButton.setDisable(true);
                 } else {
                     zmazatButton.setDisable(false);
                     pokracovatButton.setDisable(false);
+                    editovatButton.setDisable(false);
                 }
             }
         });
@@ -86,10 +92,20 @@ public class VyberUcebnuSceneController {
             model.inicializuj();
         });
         
+        editovatButton.setOnAction(eh -> {
+            UcebnaSceneController controller = new UcebnaSceneController(model.getVybrataUcebna());
+            nextWindow(controller,"UcebnaScene.fxml", "Editácia učebne");
+            if (controller.isUlozeny()) {
+                model.inicializuj();
+            }
+        });
+        
         pridatButton.setOnAction(eh -> {
-            NovaUcebnaSceneController controller = new NovaUcebnaSceneController();
-            nextWindow(controller,"NovaUcebnaScene.fxml", "Vytvorenie novej učebne");
-            
+            UcebnaSceneController controller = new UcebnaSceneController();
+            nextWindow(controller,"UcebnaScene.fxml", "Vytvorenie novej učebne");
+            if (controller.isUlozeny()) {
+                model.inicializuj();
+            }
         });
         
         pokracovatButton.setOnAction(eh -> {

@@ -1,12 +1,9 @@
 package ics.upjs.sk.spravaucebni.gui;
 
-import ics.upjs.sk.spravaucebni.Projektor;
-import ics.upjs.sk.spravaucebni.Ucebna;
+import ics.upjs.sk.spravaucebni.Tabula;
 import ics.upjs.sk.spravaucebni.storage.DaoFactory;
-import ics.upjs.sk.spravaucebni.storage.ProjektorDao;
+import ics.upjs.sk.spravaucebni.storage.TabulaDao;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,72 +13,65 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class VyberProjektorSceneController {
+public class VyberTabuluSceneController {
 
     @FXML
-    private ResourceBundle resources;
+    private ListView<Tabula> vyberTabuluListView;
 
     @FXML
-    private URL location;
+    private Button zmazatButton;
 
-    @FXML
-    private ListView<Projektor> vyberProjektorListView;
-
-    @FXML
-    private Button zmazatProjektorButton;
-    
     @FXML
     private Button pridatButton;
-    
+
     @FXML
     private Button pokracovatButton;
     
+    private VyberTabuluFxModel model;
     private Long ucebnaId;
-    private VyberProjektorFxModel model;
 
-    public VyberProjektorSceneController(Long ucebnaId) {
+    public VyberTabuluSceneController(Long ucebnaId) {
         this.ucebnaId = ucebnaId;
-        model = new VyberProjektorFxModel(ucebnaId);
+        model = new VyberTabuluFxModel(ucebnaId);
     }
     
     @FXML
     void initialize() {
-        vyberProjektorListView.setItems(model.getProjektory());
-        zmazatProjektorButton.setDisable(true);
+        vyberTabuluListView.setItems(model.getTabule());
+        zmazatButton.setDisable(true);
         pokracovatButton.setDisable(true);
         
-        vyberProjektorListView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
-            model.setVybratyProjektor(newValue);
+        vyberTabuluListView.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+            model.setVybrataTabula(newValue);
             if (newValue == null) {
-                zmazatProjektorButton.setDisable(true);
+                zmazatButton.setDisable(true);
                 pokracovatButton.setDisable(true);
             } else {
-                zmazatProjektorButton.setDisable(false);
+                zmazatButton.setDisable(false);
                 pokracovatButton.setDisable(false);
             }
         }));
-        model.getVybratyProjektorProperty().addListener(((observable, oldValue, newValue) -> {
+        
+        model.getVybrataTabulaProperty().addListener(((observable, oldValue, newValue) -> {
             if (newValue == null) {
-                vyberProjektorListView.getSelectionModel().clearSelection();
+                vyberTabuluListView.getSelectionModel().clearSelection();
             } else {
-                vyberProjektorListView.getSelectionModel().select(newValue);
+                vyberTabuluListView.getSelectionModel().select(newValue);
             }
         }));
         
-        zmazatProjektorButton.setOnAction(eh -> {
-            ProjektorDao projektorDao = DaoFactory.INSTANCE.getProjektorDao();
-            projektorDao.delete(model.getVybratyProjektor().getId());
+        zmazatButton.setOnAction(eh -> {
+            TabulaDao tabulaDao = DaoFactory.INSTANCE.getTabulaDao();
+            tabulaDao.delete(model.getVybrataTabula().getId());
             model.inicializuj();
         });
         
         pridatButton.setOnAction(eh -> {
-            ProjektorSceneController controller = new ProjektorSceneController();
-            nextWindow(controller, "ProjektorScene.fxml", "Nový projektor");
+            
         });
         
         pokracovatButton.setOnAction(eh -> {
-            ProjektorSceneController controller = new ProjektorSceneController();
-            nextWindow(controller, "ProjektorScene.fxml", "Úprava projektoru");
+            
         });
     }
     

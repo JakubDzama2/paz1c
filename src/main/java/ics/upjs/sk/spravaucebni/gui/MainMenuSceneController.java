@@ -60,7 +60,7 @@ public class MainMenuSceneController {
             stage.setTitle(title);
           
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
+            stage.show();
         } catch (IOException iOException) {
             iOException.printStackTrace();
         }
