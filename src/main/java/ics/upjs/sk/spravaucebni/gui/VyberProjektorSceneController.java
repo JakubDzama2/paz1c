@@ -75,13 +75,19 @@ public class VyberProjektorSceneController {
         });
         
         pridatButton.setOnAction(eh -> {
-            ProjektorSceneController controller = new ProjektorSceneController();
+            ProjektorSceneController controller = new ProjektorSceneController(ucebnaId);
             nextWindow(controller, "ProjektorScene.fxml", "Nový projektor");
+            if (controller.jeUlozeny()) {
+                model.inicializuj();
+            }
         });
         
         pokracovatButton.setOnAction(eh -> {
-            ProjektorSceneController controller = new ProjektorSceneController();
+            ProjektorSceneController controller = new ProjektorSceneController(model.getVybratyProjektor(), ucebnaId);
             nextWindow(controller, "ProjektorScene.fxml", "Úprava projektoru");
+            if (controller.jeUlozeny()) {
+                model.inicializuj();
+            }
         });
     }
     

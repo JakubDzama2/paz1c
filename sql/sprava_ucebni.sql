@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pocitac` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `seriove_cislo` VARCHAR(45) NOT NULL UNIQUE,
   `mac_adresa` VARCHAR(100) NOT NULL UNIQUE,
-  `posledne_pouzitie` DATETIME DEFAULT now(),
+  `posledne_pouzitie` DATETIME,
   `ucebna_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_pocitac_ucebna1_idx` (`ucebna_id` ASC),

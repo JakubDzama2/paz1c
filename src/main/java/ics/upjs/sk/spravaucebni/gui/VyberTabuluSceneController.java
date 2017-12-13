@@ -67,11 +67,19 @@ public class VyberTabuluSceneController {
         });
         
         pridatButton.setOnAction(eh -> {
-            
+            TabulaSceneController controller = new TabulaSceneController(ucebnaId);
+            nextWindow(controller, "TabulaScene.fxml", "Nová tabuľa");
+            if (controller.jeUlozeny()) {
+                model.inicializuj();
+            }
         });
         
         pokracovatButton.setOnAction(eh -> {
-            
+            TabulaSceneController controller = new TabulaSceneController(model.getVybrataTabula(), ucebnaId);
+            nextWindow(controller, "TabulaScene.fxml", "Editácia tabule");
+            if (controller.jeUlozeny()) {
+                model.inicializuj();
+            }
         });
     }
     

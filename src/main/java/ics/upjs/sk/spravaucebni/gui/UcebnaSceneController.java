@@ -90,7 +90,7 @@ public class UcebnaSceneController {
         
     }
     
-        public boolean isUlozeny() {
+        public boolean jeUlozeny() {
         return ulozeny;
     }
 }

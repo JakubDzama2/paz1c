@@ -91,7 +91,7 @@ public class VyberPocitacSceneController {
        });
        
        pokracovatButton.setOnAction(eh -> {
-           PocitacSceneController pocitacSceneController = new PocitacSceneController();
+           PocitacSceneController pocitacSceneController = new PocitacSceneController(model.getVybratyPocitac());
            nextWindow(pocitacSceneController, "PocitacScene.fxml", "Úprava počítača");
        });
     }

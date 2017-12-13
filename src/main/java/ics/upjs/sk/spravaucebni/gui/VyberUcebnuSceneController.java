@@ -95,7 +95,7 @@ public class VyberUcebnuSceneController {
         editovatButton.setOnAction(eh -> {
             UcebnaSceneController controller = new UcebnaSceneController(model.getVybrataUcebna());
             nextWindow(controller,"UcebnaScene.fxml", "Editácia učebne");
-            if (controller.isUlozeny()) {
+            if (controller.jeUlozeny()) {
                 model.inicializuj();
             }
         });
@@ -103,7 +103,7 @@ public class VyberUcebnuSceneController {
         pridatButton.setOnAction(eh -> {
             UcebnaSceneController controller = new UcebnaSceneController();
             nextWindow(controller,"UcebnaScene.fxml", "Vytvorenie novej učebne");
-            if (controller.isUlozeny()) {
+            if (controller.jeUlozeny()) {
                 model.inicializuj();
             }
         });
