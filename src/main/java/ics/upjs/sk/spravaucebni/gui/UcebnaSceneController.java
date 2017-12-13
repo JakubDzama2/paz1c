@@ -46,6 +46,8 @@ public class UcebnaSceneController {
             PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
             Pouzivatel p = pouzivatelDao.getById(aktualnaUcebna.getIdPouzivatela());
             pouzivatelCombobox.getSelectionModel().select(p);
+        } else {
+            pouzivatelCombobox.getSelectionModel().selectLast();
         }
     }
     

@@ -24,15 +24,14 @@ public class UcebnaFxModel {
     public UcebnaFxModel(Ucebna aktualnaUcebna) {
         this.aktualnaUcebna = aktualnaUcebna;
         pouzivatelia = FXCollections.observableArrayList(pouzivatelDao.getAll());
+        Pouzivatel nullovyPouzivatel = new Pouzivatel();
+        nullovyPouzivatel.setMeno("--bez správcu--");
+        pouzivatelia.add(nullovyPouzivatel);
         if (aktualnaUcebna != null) {
-            nacitaj();
+            setNazov(aktualnaUcebna.getNazov());
+        } else {
+            setPouzivatel(nullovyPouzivatel);
         }
-    }
-    
-    public void nacitaj() {
-        setNazov(aktualnaUcebna.getNazov());
-        Pouzivatel p = pouzivatelDao.getById(aktualnaUcebna.getIdPouzivatela());
-        setPouzivatel(p);
     }
 
     public StringProperty getNazovProperty() {
@@ -69,10 +68,13 @@ public class UcebnaFxModel {
             aktualnaUcebna = ucebna;
         }
         aktualnaUcebna.setNazov(getNazov());
-        if (getPouzivatel() != null) {
-            aktualnaUcebna.setIdPouzivatela(getPouzivatel().getId());
-        } else {
+        if (getPouzivatel() == null) {
+            System.out.println("p je null");
+        }
+        if (getPouzivatel().getMeno().equals("--bez správcu--")) {
             aktualnaUcebna.setIdPouzivatela(null);
+        } else {
+            aktualnaUcebna.setIdPouzivatela(getPouzivatel().getId());
         }
         ucebnaDao.save(aktualnaUcebna);
     }

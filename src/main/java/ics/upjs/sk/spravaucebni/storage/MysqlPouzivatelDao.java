@@ -45,6 +45,9 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
 
     @Override
     public Pouzivatel getById(Long id) {
+        if (id == null || id == 0) {
+            return null;
+        }
         String sql = "SELECT * FROM pouzivatel WHERE id = " + id;
         return jdbcTemplate.queryForObject(sql, new RowMapper<Pouzivatel>() {
             @Override
