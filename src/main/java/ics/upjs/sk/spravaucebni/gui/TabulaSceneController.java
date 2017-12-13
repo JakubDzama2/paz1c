@@ -33,10 +33,28 @@ public class TabulaSceneController {
         this.ucebnaId = ucebnaId;
         model = new TabulaFxModel(aktualnaTabula, ucebnaId);
     }
-    
+    @FXML
     void initialize() {
+        if (model.getTyp() == null) {
+            ulozitButton.setDisable(true);
+        }
         typTextField.textProperty().bindBidirectional(model.getTypProperty());
-        
+        typTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.trim().equals("")) {
+                ulozitButton.setDisable(true);
+                typTextField.setStyle("-fx-background-color: lightcoral;");
+            } else {
+                ulozitButton.setDisable(false);
+                typTextField.setStyle("-fx-background-color: white;");
+            }
+        }));
+//        model.getTypProperty().addListener(((observable, oldValue, newValue) -> {
+//            if (newValue == null || newValue.trim().equals("")) {
+//                ulozitButton.setDisable(true);
+//            } else {
+//                ulozitButton.setDisable(false);
+//            }
+//        }));
         SpinnerValueFactory.IntegerSpinnerValueFactory sprinnerValueFactory =
         new SpinnerValueFactory.IntegerSpinnerValueFactory(1,1000,model.getPocetPisatiek());
         pocetPisatiekSpinner.setValueFactory(sprinnerValueFactory);
@@ -48,12 +66,6 @@ public class TabulaSceneController {
         model.getPocetPisatiekProperty().addListener(((observable, oldValue, newValue) -> {
             pocetPisatiekSpinner.getValueFactory().setValue(newValue.intValue());
         }));
-        
-        if (model.getTyp() == null || model.getTyp().trim().equals("")) {
-            ulozitButton.setDisable(true);
-        } else {
-            ulozitButton.setDisable(false);
-        }
         
         ulozitButton.setOnAction(eh -> {
             model.ulozAktualnuTabulu();

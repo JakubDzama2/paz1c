@@ -11,7 +11,7 @@ import javafx.beans.property.StringProperty;
 public class TabulaFxModel {
 
     private StringProperty typ = new SimpleStringProperty(null);
-    private IntegerProperty pocetPisatiek = new SimpleIntegerProperty(0);
+    private IntegerProperty pocetPisatiek = new SimpleIntegerProperty(1);
     private Tabula aktualnaTabula;
     private Long ucebnaId;
 
@@ -21,7 +21,7 @@ public class TabulaFxModel {
         inicializuj();
     }
     
-    private void inicializuj() {
+    public void inicializuj() {
         if (aktualnaTabula != null) {
             setTyp(aktualnaTabula.getTyp());
             setPocetPisatiek(aktualnaTabula.getPocetPisatiek());
