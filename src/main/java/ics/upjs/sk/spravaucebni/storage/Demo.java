@@ -1,6 +1,6 @@
 package ics.upjs.sk.spravaucebni.storage;
 
-import ics.upjs.sk.spravaucebni.Chyba;
+import ics.upjs.sk.spravaucebni.Oznam;
 import ics.upjs.sk.spravaucebni.Pocitac;
 import ics.upjs.sk.spravaucebni.Pouzivatel;
 import ics.upjs.sk.spravaucebni.Projektor;
@@ -19,8 +19,8 @@ public class Demo {
         UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
         List<Ucebna> ucebne = ucebnaDao.getAll();
         
-        ChybaDao chybaDao = DaoFactory.INSTANCE.getChybaDao();
-        List<Chyba> chyby = chybaDao.getAll();
+        OznamDao chybaDao = DaoFactory.INSTANCE.getOznamDao();
+        List<Oznam> oznamy = chybaDao.getAll();
         
         PocitacDao pocitacDao = DaoFactory.INSTANCE.getPocitacDao();
         List<Pocitac> pocitace = pocitacDao.getByUcebnaId(1L);
@@ -62,8 +62,8 @@ public class Demo {
         for (Ucebna u : ucebne) {
             System.out.println(u.getNazov());
             
-        for (Chyba chyba : u.getChyby()) {
-            System.out.println(chyba.getCas() + " " + chyba.getHlasatelChyby());
+        for (Oznam chyba : u.getOznamy()) {
+            System.out.println(chyba.getCas() + " " + chyba.getHlasatel());
         }
         
         for (Pocitac pocitac : u.getPocitace()) {

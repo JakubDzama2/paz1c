@@ -1,10 +1,12 @@
 package ics.upjs.sk.spravaucebni.gui;
 
+import ics.upjs.sk.spravaucebni.Oznam;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class OznamSceneController {
 
@@ -15,15 +17,19 @@ public class OznamSceneController {
     private URL location;
 
     @FXML
+    private TextField menoTextField;
+    
+    @FXML
     private TextArea oznamTextArea;
 
     @FXML
     private Button ulozitButton;
 
+    private OznamFxModel model;
+    private Oznam aktualnyOznam;
+    
     @FXML
     void initialize() {
-        assert oznamTextArea != null : "fx:id=\"oznamTextArea\" was not injected: check your FXML file 'OznamScene.fxml'.";
-        assert ulozitButton != null : "fx:id=\"ulozitButton\" was not injected: check your FXML file 'OznamScene.fxml'.";
-
+        
     }
 }

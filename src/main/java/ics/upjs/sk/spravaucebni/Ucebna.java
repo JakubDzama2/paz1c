@@ -13,7 +13,7 @@ public class Ucebna {
     private List<Pocitac> pocitace = new ArrayList<>();
     private List<Projektor> projektory = new ArrayList<>();
     private List<Spotreba> spotreby = new ArrayList<>();
-    private List<Chyba> chyby = new ArrayList<>();
+    private List<Oznam> oznamy = new ArrayList<>();
     private Long idPouzivatela;
 
     
@@ -66,12 +66,12 @@ public class Ucebna {
         this.spotreby = spotreby;
     }
 
-    public List<Chyba> getChyby() {
-        return chyby;
+    public List<Oznam> getOznamy() {
+        return oznamy;
     }
 
-    public void setChyby(List<Chyba> chyby) {
-        this.chyby = chyby;
+    public void setOznamy(List<Oznam> oznamy) {
+        this.oznamy = oznamy;
     }
 
     public Long getIdPouzivatela() {

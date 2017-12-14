@@ -2,12 +2,12 @@ package ics.upjs.sk.spravaucebni;
 
 import java.time.LocalDateTime;
 
-public class Chyba {
+public class Oznam {
 
     private Long id;
     private String poznamka;
     private LocalDateTime cas;
-    private String hlasatelChyby;
+    private String hlasatel;
     private Long ucebnaId;
 
     public Long getId() {
@@ -34,12 +34,12 @@ public class Chyba {
         this.cas = cas;
     }
 
-    public String getHlasatelChyby() {
-        return hlasatelChyby;
+    public String getHlasatel() {
+        return hlasatel;
     }
 
-    public void setHlasatelChyby(String hlasatelChyby) {
-        this.hlasatelChyby = hlasatelChyby;
+    public void setHlasatel(String hlasatel) {
+        this.hlasatel = hlasatel;
     }
 
     public Long getUcebnaId() {
@@ -52,7 +52,7 @@ public class Chyba {
 
     @Override
     public String toString() {
-        return getHlasatelChyby() + " - " + getPoznamka();
+        return getHlasatel() + " - " + getPoznamka();
     }
     
     

@@ -1,6 +1,6 @@
 package ics.upjs.sk.spravaucebni.storage;
 
-import ics.upjs.sk.spravaucebni.Chyba;
+import ics.upjs.sk.spravaucebni.Oznam;
 import ics.upjs.sk.spravaucebni.Pocitac;
 import ics.upjs.sk.spravaucebni.Projektor;
 import ics.upjs.sk.spravaucebni.Spotreba;
@@ -22,7 +22,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
     private PocitacDao pocitacDao = DaoFactory.INSTANCE.getPocitacDao();
     private ProjektorDao projektorDao = DaoFactory.INSTANCE.getProjektorDao();
     private SpotrebaDao spotrebaDao = DaoFactory.INSTANCE.getSpotrebaDao();
-    private ChybaDao chybaDao = DaoFactory.INSTANCE.getChybaDao();
+    private OznamDao oznamDao = DaoFactory.INSTANCE.getOznamDao();
 
     public MysqlUcebnaDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -52,7 +52,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
             u.setPocitace(pocitacDao.getByUcebnaId(u.getId()));
             u.setProjektory(projektorDao.getByUcebnaId(u.getId()));
             u.setSpotreby(spotrebaDao.getByUcebnaId(u.getId()));
-            u.setChyby(chybaDao.getByUcebnaId(u.getId()));
+            u.setOznamy(oznamDao.getByUcebnaId(u.getId()));
         }
     }
     
@@ -91,7 +91,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
         ucebna.setPocitace(pocitacDao.getByUcebnaId(ucebna.getId()));
         ucebna.setProjektory(projektorDao.getByUcebnaId(ucebna.getId()));
         ucebna.setSpotreby(spotrebaDao.getByUcebnaId(ucebna.getId()));
-        ucebna.setChyby(chybaDao.getByUcebnaId(ucebna.getId()));
+        ucebna.setOznamy(oznamDao.getByUcebnaId(ucebna.getId()));
         return ucebna;
     }
     
@@ -145,8 +145,8 @@ public class MysqlUcebnaDao implements UcebnaDao {
     }
     
     private void savePrvkyUcebne(Ucebna u) {
-        for (Chyba chyba : u.getChyby()) {
-            chybaDao.save(chyba);
+        for (Oznam oznam : u.getOznamy()) {
+            oznamDao.save(oznam);
         }
         for (Pocitac pocitac : u.getPocitace()) {
             pocitacDao.save(pocitac);

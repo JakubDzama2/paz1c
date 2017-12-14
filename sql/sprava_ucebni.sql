@@ -106,15 +106,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `sprava_ucebni`.`chyba`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`chyba` (
+CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`oznam` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `poznamka` VARCHAR(500) NULL,
   `cas` DATETIME NOT NULL,
-  `hlasatel_chyby` VARCHAR(100) NOT NULL,
+  `hlasatel` VARCHAR(100) NOT NULL,
   `ucebna_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_chyba_ucebna1_idx` (`ucebna_id` ASC),
-  CONSTRAINT `fk_chyba_ucebna1`
+  INDEX `fk_oznam_ucebna1_idx` (`ucebna_id` ASC),
+  CONSTRAINT `fk_oznam_ucebna1`
     FOREIGN KEY (`ucebna_id`)
     REFERENCES `sprava_ucebni`.`ucebna` (`id`)
     ON DELETE CASCADE
@@ -162,5 +162,5 @@ INSERT INTO `sprava_ucebni`.`projektor` (`pocet_nasvietenych_hodin`, `kvalita_ob
 INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('AMD487', '78-sa-gh-1g-12-er', '2012-12-12', '1');
 INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('FOR745', 'a4-5s-54-sa-qw-45', '2017-03-25', '2');
 
-INSERT INTO `sprava_ucebni`.`chyba` (`poznamka`, `cas`, `hlasatel_chyby`, `ucebna_id`) VALUES ('piska tabula', '2017-12-06 17:00', 'Jakub Dzama', '1');
-INSERT INTO `sprava_ucebni`.`chyba` (`poznamka`, `cas`, `hlasatel_chyby`, `ucebna_id`) VALUES ('negunguje pocitac AMD478', '2017-12-07 14:48', 'Viktor Olejar', '2');
+INSERT INTO `sprava_ucebni`.`oznam` (`poznamka`, `cas`, `hlasatel`, `ucebna_id`) VALUES ('piska tabula', '2017-12-06 17:00', 'Jakub Dzama', '1');
+INSERT INTO `sprava_ucebni`.`oznam` (`poznamka`, `cas`, `hlasatel`, `ucebna_id`) VALUES ('negunguje pocitac AMD478', '2017-12-07 14:48', 'Viktor Olejar', '2');

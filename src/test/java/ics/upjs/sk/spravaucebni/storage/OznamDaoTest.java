@@ -1,6 +1,6 @@
 package ics.upjs.sk.spravaucebni.storage;
 
-import ics.upjs.sk.spravaucebni.Chyba;
+import ics.upjs.sk.spravaucebni.Oznam;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.After;
@@ -10,11 +10,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ChybaDaoTest {
+public class OznamDaoTest {
 
-    private ChybaDao dao = DaoFactory.INSTANCE.getChybaDao();
+    private OznamDao dao = DaoFactory.INSTANCE.getOznamDao();
     
-    public ChybaDaoTest() {
+    public OznamDaoTest() {
     }
     
     @BeforeClass
@@ -35,29 +35,28 @@ public class ChybaDaoTest {
 
     @Test
     public void getAllTest() {
-        List<Chyba> all = dao.getAll();
+        List<Oznam> all = dao.getAll();
         assertTrue(all.size() > 0);
     }
     
     @Test
     public void saveTest() {
-        List<Chyba> all = dao.getAll();
-        Chyba ch = new Chyba();
-        ch.setCas(LocalDateTime.now());
-        ch.setHlasatelChyby("Diminik");
-        ch.setPoznamka("nie su kriedy");
-        ch.setUcebnaId(1L);
-        assertTrue(dao.save(ch));
+        List<Oznam> all = dao.getAll();
+        Oznam oznam = new Oznam();
+        oznam.setCas(LocalDateTime.now());
+        oznam.setHlasatel("Diminik");
+        oznam.setPoznamka("nie su kriedy");
+        oznam.setUcebnaId(1L);
+        assertTrue(dao.save(oznam));
         assertTrue(all.size() + 1 == dao.getAll().size());
     }
     
     @Test
     public void deleteTest() {
         int velkost = dao.getAll().size();
-        Chyba ch = dao.getAll().get(velkost - 1);
-        boolean jeZmazany = dao.delete(ch.getId());
+        Oznam oznam = dao.getAll().get(velkost - 1);
+        boolean jeZmazany = dao.delete(oznam.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
-//        dao.save(ch);
     }
 }

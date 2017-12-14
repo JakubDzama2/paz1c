@@ -46,7 +46,7 @@ public enum DaoFactory {
         return new MysqlPocitacDao(getJDBCTemplate());
     }
     
-    public ChybaDao getChybaDao() {
-        return new MysqlChybaDao(getJDBCTemplate());
+    public OznamDao getOznamDao() {
+        return new MysqlOznamDao(getJDBCTemplate());
     }
 }
