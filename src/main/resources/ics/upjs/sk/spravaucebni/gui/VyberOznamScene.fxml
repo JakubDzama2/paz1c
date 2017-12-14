@@ -5,11 +5,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="vyberTabuluListView" layoutX="22.0" layoutY="64.0" prefHeight="231.0" prefWidth="252.0" />
-      <Label layoutX="22.0" layoutY="29.0" text="Vyberte tabuľu pre editáciu:" />
+      <ListView fx:id="vyberOznamListView" layoutX="22.0" layoutY="64.0" prefHeight="231.0" prefWidth="252.0" />
+      <Label layoutX="22.0" layoutY="29.0" text="Vyberte oznam pre editáciu:" />
       <Button fx:id="zmazatButton" layoutX="22.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Zmazať" />
       <Button fx:id="pridatButton" layoutX="107.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Pridať" />
       <Button fx:id="pokracovatButton" layoutX="192.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Pokračovať" />

@@ -14,7 +14,7 @@
             <Button fx:id="tabuleButton" mnemonicParsing="false" prefHeight="158.0" prefWidth="107.0" text="Tabule" />
             <Button fx:id="projektoryButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Projektory" textAlignment="CENTER" wrapText="true" />
             <Button fx:id="spotrebaButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Spotreba" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="spravyButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Správy" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="oznamyButton" mnemonicParsing="false" prefHeight="155.0" prefWidth="103.0" text="Oznamy" textAlignment="CENTER" wrapText="true" />
          </children>
       </HBox>
    </children>

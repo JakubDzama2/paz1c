@@ -32,7 +32,7 @@ public class EditUcebnaSceneController {
     private Button spotrebaButton;
 
     @FXML
-    private Button spravyButton;
+    private Button oznamyButton;
 
     private Ucebna ucebna;
 
@@ -61,10 +61,10 @@ public class EditUcebnaSceneController {
  //           ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();
  //           nextWindow(controller,".fxml");
  //       });
-//        spravyButton.setOnAction(eh -> {
-//            ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();
-//            nextWindow(controller,"OznamScene.fxml");
-//        });
+        oznamyButton.setOnAction(eh -> {
+            VyberOznamSceneController controller = new VyberOznamSceneController(ucebna.getId());
+            nextWindow(controller,"VyberOznamScene.fxml", "Oznamy učebne: " + ucebna.getNazov());
+        });
     }
     
     private void nextWindow (Object controller, String resourceFXMLString, String title){
