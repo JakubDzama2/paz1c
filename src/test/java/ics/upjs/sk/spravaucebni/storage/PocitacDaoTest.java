@@ -1,7 +1,7 @@
 package ics.upjs.sk.spravaucebni.storage;
 
 import ics.upjs.sk.spravaucebni.Pocitac;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,7 +43,7 @@ public class PocitacDaoTest {
     public void saveTest() {
         List<Pocitac> all = dao.getAll();
         Pocitac pocitac = new Pocitac();
-        pocitac.setPoslednePouzitie(LocalDateTime.now());
+        pocitac.setPoslednePouzitie(LocalDate.now());
         pocitac.setSerioveCislo("Rambo2000");
         pocitac.setMacAdresa("ajaj 12sd m5b4 8e9o");
         pocitac.setUcebnaId(1L);

@@ -17,29 +17,29 @@ public class PocitacSceneController {
     private URL location;
 
     @FXML
+    private TextField serialTextField;
+    
+    @FXML
     private TextField macTextField;
 
     @FXML
-    private TextField serialTextField;
-
+    private DatePicker poslednePouzitieDatePicker;
+    
     @FXML
     private Button ulozitButton;
-
-    @FXML
-    private DatePicker poslednePouzitieDatePicker;
-
+    
     private Pocitac aktualnyPocitac;
     private PocitacFxModel model;
     private boolean ulozeny;
     
-    public PocitacSceneController() {
-        model = new PocitacFxModel(null);
+    public PocitacSceneController(Long ucebnaId) {
+        model = new PocitacFxModel(null, ucebnaId);
         aktualnyPocitac = null;
     }
 
-    public PocitacSceneController(Pocitac aktualnyPocitac) {
+    public PocitacSceneController(Pocitac aktualnyPocitac, Long ucebnaId) {
         this.aktualnyPocitac = aktualnyPocitac;
-        model = new PocitacFxModel(aktualnyPocitac);
+        model = new PocitacFxModel(aktualnyPocitac, ucebnaId);
     }  
     
     @FXML
@@ -71,14 +71,22 @@ public class PocitacSceneController {
             }
             setUlozitButtonDisable();
         }));
-        
-        
-        
-        //TODO DATEPICKER
+        if (aktualnyPocitac != null) {
+            poslednePouzitieDatePicker.setValue(model.getPoslednePouzitie());
+        }
+        poslednePouzitieDatePicker.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            model.setPoslednePouzitie(newValue);
+        }));
+        model.getPoslednePouzitieProperty().addListener(((observable, oldValue, newValue) -> {
+            poslednePouzitieDatePicker.setValue(newValue);
+        }));
         
         ulozitButton.setOnAction(eh -> {
-            
+            model.ulozAktualnyPocitac();
+            ulozeny = true;
+            ulozitButton.getScene().getWindow().hide();
         });
+        setUlozitButtonDisable();
     }
     
     public boolean jeUlozeny() {

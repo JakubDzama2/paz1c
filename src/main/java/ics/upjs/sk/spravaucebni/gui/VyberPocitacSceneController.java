@@ -86,13 +86,19 @@ public class VyberPocitacSceneController {
        });
        
        pridatButton.setOnAction(eh -> {
-           PocitacSceneController pocitacSceneController = new PocitacSceneController();
+           PocitacSceneController pocitacSceneController = new PocitacSceneController(ucebnaId);
            nextWindow(pocitacSceneController, "PocitacScene.fxml", "Nový počítač");
+           if (pocitacSceneController.jeUlozeny()) {
+               model.inicializuj();
+           }
        });
        
        pokracovatButton.setOnAction(eh -> {
-           PocitacSceneController pocitacSceneController = new PocitacSceneController(model.getVybratyPocitac());
+           PocitacSceneController pocitacSceneController = new PocitacSceneController(model.getVybratyPocitac(), ucebnaId);
            nextWindow(pocitacSceneController, "PocitacScene.fxml", "Úprava počítača");
+           if (pocitacSceneController.jeUlozeny()) {
+               model.inicializuj();
+           }
        });
     }
     

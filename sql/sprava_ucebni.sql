@@ -11,6 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema sprava_ucebni
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `sprava_ucebni`;
 CREATE SCHEMA IF NOT EXISTS `sprava_ucebni` DEFAULT CHARACTER SET utf8 ;
 USE `sprava_ucebni` ;
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pocitac` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `seriove_cislo` VARCHAR(45) NOT NULL UNIQUE,
   `mac_adresa` VARCHAR(100) NOT NULL UNIQUE,
-  `posledne_pouzitie` DATETIME,
+  `posledne_pouzitie` DATE,
   `ucebna_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_pocitac_ucebna1_idx` (`ucebna_id` ASC),
@@ -158,8 +159,8 @@ INSERT INTO `sprava_ucebni`.`spotreba` (`datum`, `hodnota`, `ucebna_id`) VALUES 
 INSERT INTO `sprava_ucebni`.`projektor` (`pocet_nasvietenych_hodin`, `kvalita_obrazu`, `nazov_modelu`, `ocakavana_zivotnost_lampy`, `ucebna_id`) VALUES ('12', 'velmi dobra', 'ARK-87', '8655', '1');
 INSERT INTO `sprava_ucebni`.`projektor` (`pocet_nasvietenych_hodin`, `kvalita_obrazu`, `nazov_modelu`, `ocakavana_zivotnost_lampy`, `ucebna_id`) VALUES ('32', 'fajn', 'A-K-A', '1245', '2');
 
-INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('AMD487', '78-sa-gh-1g-12-er', '2012-12-12 12:12', '1');
-INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('FOR745', 'a4-5s-54-sa-qw-45', '2017-03-25 11:45', '2');
+INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('AMD487', '78-sa-gh-1g-12-er', '2012-12-12', '1');
+INSERT INTO `sprava_ucebni`.`pocitac` (`seriove_cislo`, `mac_adresa`, `posledne_pouzitie`, `ucebna_id`) VALUES ('FOR745', 'a4-5s-54-sa-qw-45', '2017-03-25', '2');
 
 INSERT INTO `sprava_ucebni`.`chyba` (`poznamka`, `cas`, `hlasatel_chyby`, `ucebna_id`) VALUES ('piska tabula', '2017-12-06 17:00', 'Jakub Dzama', '1');
 INSERT INTO `sprava_ucebni`.`chyba` (`poznamka`, `cas`, `hlasatel_chyby`, `ucebna_id`) VALUES ('negunguje pocitac AMD478', '2017-12-07 14:48', 'Viktor Olejar', '2');

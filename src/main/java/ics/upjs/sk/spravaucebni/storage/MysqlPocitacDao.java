@@ -28,7 +28,7 @@ public class MysqlPocitacDao implements PocitacDao {
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
                 pocitac.setMacAdresa(rs.getString("mac_adresa"));
-                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
+                pocitac.setPoslednePouzitie(rs.getDate("posledne_pouzitie").toLocalDate());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
             }
@@ -45,7 +45,7 @@ public class MysqlPocitacDao implements PocitacDao {
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
                 pocitac.setMacAdresa(rs.getString("mac_adresa"));
-                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
+                pocitac.setPoslednePouzitie(rs.getDate("posledne_pouzitie").toLocalDate());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
             }
@@ -62,7 +62,7 @@ public class MysqlPocitacDao implements PocitacDao {
                 pocitac.setId(rs.getLong("id"));
                 pocitac.setSerioveCislo(rs.getString("seriove_cislo"));
                 pocitac.setMacAdresa(rs.getString("mac_adresa"));
-                pocitac.setPoslednePouzitie(rs.getTimestamp("posledne_pouzitie").toLocalDateTime());
+                pocitac.setPoslednePouzitie(rs.getDate("posledne_pouzitie").toLocalDate());
                 pocitac.setUcebnaId(rs.getLong("ucebna_id"));
                 return pocitac;
             }

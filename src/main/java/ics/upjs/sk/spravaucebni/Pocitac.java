@@ -1,13 +1,13 @@
 package ics.upjs.sk.spravaucebni;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Pocitac {
 
     private Long id;
     private String serioveCislo;
     private String macAdresa;
-    private LocalDateTime poslednePouzitie;
+    private LocalDate poslednePouzitie;
     private Long ucebnaId;
 
     public String getSerioveCislo() {
@@ -34,11 +34,11 @@ public class Pocitac {
         this.id = id;
     }
 
-    public LocalDateTime getPoslednePouzitie() {
+    public LocalDate getPoslednePouzitie() {
         return poslednePouzitie;
     }
 
-    public void setPoslednePouzitie(LocalDateTime poslednePouzitie) {
+    public void setPoslednePouzitie(LocalDate poslednePouzitie) {
         this.poslednePouzitie = poslednePouzitie;
     }
 

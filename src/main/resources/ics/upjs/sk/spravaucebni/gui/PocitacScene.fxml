@@ -15,6 +15,6 @@
       <TextField fx:id="serialTextField" layoutX="194.0" layoutY="61.0" prefHeight="26.0" prefWidth="149.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="61.0" />
       <Button fx:id="ulozitButton" layoutX="295.0" layoutY="182.0" mnemonicParsing="false" text="Uložiť" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="182.0" />
       <Label layoutX="14.0" layoutY="27.0" prefHeight="17.0" prefWidth="158.0" text="Vykonajte príslušné úpravy:" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="27.0" />
-      <DatePicker fx:id="poslednePouzitieDatePicker" layoutX="193.0" layoutY="138.0" prefHeight="26.0" prefWidth="149.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="138.0" />
+      <DatePicker fx:id="poslednePouzitieDatePicker" editable="false" layoutX="193.0" layoutY="138.0" prefHeight="26.0" prefWidth="149.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="138.0" />
    </children>
 </AnchorPane>

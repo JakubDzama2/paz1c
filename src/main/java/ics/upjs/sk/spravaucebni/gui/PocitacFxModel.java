@@ -1,7 +1,9 @@
 package ics.upjs.sk.spravaucebni.gui;
 
 import ics.upjs.sk.spravaucebni.Pocitac;
-import java.time.LocalDateTime;
+import ics.upjs.sk.spravaucebni.storage.DaoFactory;
+import ics.upjs.sk.spravaucebni.storage.PocitacDao;
+import java.time.LocalDate;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,19 +13,24 @@ public class PocitacFxModel {
 
     private StringProperty serioveCislo = new SimpleStringProperty(null);
     private StringProperty macAdresa = new SimpleStringProperty(null);
-    private ObjectProperty<LocalDateTime> poslednePouzitie = new SimpleObjectProperty<>();
+    private ObjectProperty<LocalDate> poslednePouzitie = new SimpleObjectProperty<>();
     private Pocitac aktualnyPocitac;
+    private Long ucebnaId;
     private int pocetChyb = 0;
 
-    public PocitacFxModel(Pocitac aktualnyPocitac) {
+    public PocitacFxModel(Pocitac aktualnyPocitac, Long ucebnaId) {
         this.aktualnyPocitac = aktualnyPocitac;
+        this.ucebnaId = ucebnaId;
         inicializuj();
     }
     
-    private void inicializuj() {
+    public void inicializuj() {
         if (aktualnyPocitac != null) {
             setSerioveCislo(aktualnyPocitac.getSerioveCislo());
-            setMacAdresa(aktualnyPocitac.getMacAdresa());          
+            setMacAdresa(aktualnyPocitac.getMacAdresa());
+            setPoslednePouzitie(aktualnyPocitac.getPoslednePouzitie());
+        } else {
+            setPocetChyb(2);
         }
     }
 
@@ -51,15 +58,15 @@ public class PocitacFxModel {
         this.macAdresa.set(macAdresa);
     }
 
-    public ObjectProperty<LocalDateTime> getPoslednePouzitieProperty() {
+    public ObjectProperty<LocalDate> getPoslednePouzitieProperty() {
         return poslednePouzitie;
     }
     
-    public LocalDateTime getPoslednePouzitie() {
+    public LocalDate getPoslednePouzitie() {
         return poslednePouzitie.get();
     }
 
-    public void setPoslednePouzitie(LocalDateTime poslednePouzitie) {
+    public void setPoslednePouzitie(LocalDate poslednePouzitie) {
         this.poslednePouzitie.set(poslednePouzitie);
     }
 
@@ -71,6 +78,16 @@ public class PocitacFxModel {
         this.pocetChyb = pocetChyb;
     }
     
-    
+    public void ulozAktualnyPocitac() {
+        if (aktualnyPocitac == null) {
+            aktualnyPocitac = new Pocitac();
+        }
+        aktualnyPocitac.setSerioveCislo(getSerioveCislo());
+        aktualnyPocitac.setMacAdresa(getMacAdresa());
+        aktualnyPocitac.setPoslednePouzitie(getPoslednePouzitie());
+        aktualnyPocitac.setUcebnaId(ucebnaId);
+        PocitacDao pocitacDao = DaoFactory.INSTANCE.getPocitacDao();
+        pocitacDao.save(aktualnyPocitac);
+    }
     
 }
