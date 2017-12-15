@@ -4,17 +4,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="ulozitButton" layoutX="271.0" layoutY="218.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" text="Uložiť" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="218.0" />
-      <Label layoutX="14.0" layoutY="41.0" prefHeight="17.0" prefWidth="104.0" text="Meno používateľa:" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="41.0" />
-      <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="83.0" text="Dočasné heslo:" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="242.0" AnchorPane.topAnchor="81.0" />
-      <Label layoutX="14.0" layoutY="121.0" prefHeight="17.0" prefWidth="113.0" text="E-mail:" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="121.0" />
-      <TextField fx:id="menoTextField" layoutX="170.0" layoutY="51.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="51.0" />
-      <TextField fx:id="docasneHesloTextField" layoutX="170.0" layoutY="91.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="91.0" />
-      <TextField fx:id="mailTextField" layoutX="170.0" layoutY="131.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="131.0" />
-      <Label layoutX="14.0" layoutY="2.0" prefHeight="17.0" prefWidth="149.0" text="Zadajte potrebné údaje: " AnchorPane.bottomAnchor="207.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="2.0" />
-      <Label layoutX="14.0" layoutY="175.0" prefHeight="17.0" prefWidth="125.0" text="Učebňe na priradenie:" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="175.0" />
+      <Button fx:id="ulozitButton" layoutX="271.0" layoutY="297.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" text="Uložiť" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="297.0" />
+      <Label layoutX="14.0" layoutY="54.0" prefHeight="17.0" prefWidth="104.0" text="Meno používateľa:" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="54.0" />
+      <Label layoutX="14.0" layoutY="94.0" prefHeight="17.0" prefWidth="83.0" text="Dočasné heslo:" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="242.0" AnchorPane.topAnchor="94.0" />
+      <Label layoutX="14.0" layoutY="134.0" prefHeight="17.0" prefWidth="113.0" text="E-mail:" AnchorPane.bottomAnchor="185.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="134.0" />
+      <TextField fx:id="menoTextField" layoutX="170.0" layoutY="51.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="51.0" />
+      <TextField fx:id="docasneHesloTextField" layoutX="170.0" layoutY="91.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="91.0" />
+      <TextField fx:id="mailTextField" layoutX="170.0" layoutY="131.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="131.0" />
+      <Label layoutX="14.0" layoutY="15.0" prefHeight="17.0" prefWidth="149.0" text="Zadajte potrebné údaje: " AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="15.0" />
+      <Label layoutX="14.0" layoutY="175.0" prefHeight="17.0" prefWidth="125.0" text="Učebňe na priradenie:" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="175.0" />
+      <FlowPane fx:id="ucebneFlowPane" layoutX="14.0" layoutY="200.0" prefHeight="87.0" prefWidth="307.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="200.0" />
    </children>
 </AnchorPane>

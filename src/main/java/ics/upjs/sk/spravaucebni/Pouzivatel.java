@@ -13,7 +13,7 @@ public class Pouzivatel {
     private String email;
     private LocalDateTime poslednePrihlasenie;
     private List<Ucebna> ucebne;
-
+    
     public Long getId() {
         return id;
     }

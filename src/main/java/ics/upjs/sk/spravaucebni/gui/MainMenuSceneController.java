@@ -31,13 +31,13 @@ public class MainMenuSceneController {
     @FXML
     void initialize() {
        
-        pridatPouzivatelaButton.setOnAction(eh -> {
-             NovyPouzivatelSceneController controller = new NovyPouzivatelSceneController();
-             nextWindow(controller,"NovyPouzivatelScene.fxml", "Vytvorenie nového použivateľa");
-        });
+//        pridatPouzivatelaButton.setOnAction(eh -> {
+//             NovyPouzivatelSceneController controller = new NovyPouzivatelSceneController();
+//             nextWindow(controller,"NovyPouzivatelScene.fxml", "Vytvorenie nového použivateľa");
+//        });
         upravitPouzivatelaButton.setOnAction(eh -> {
-            ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();
-            nextWindow(controller,"ZmazatPouzivatelaScene.fxml", "Úprava použivateľa");
+            VyberPouzivatelaSceneController controller = new VyberPouzivatelaSceneController();
+            nextWindow(controller,"VyberPouzivatelaScene.fxml", "Úprava použivateľa");
         });
         upravitUcebnuButton.setOnAction(eh -> {
             VyberUcebnuSceneController controller = new VyberUcebnuSceneController();
