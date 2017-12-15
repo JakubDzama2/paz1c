@@ -40,6 +40,23 @@ public class OznamDaoTest {
     }
     
     @Test
+    public void getByUcebnaIdTest() {
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        Long ucebnaId = ucebnaDao.getAll().get(0).getId();
+        List<Oznam> allByUcebnaId = dao.getByUcebnaId(ucebnaId);
+        for (Oznam oznam : allByUcebnaId) {
+            assertTrue(oznam.getUcebnaId() == ucebnaId);
+        }
+    }
+    
+    @Test
+    public void getByIdTest() {
+        Oznam o1 = dao.getAll().get(0);
+        Oznam o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
+    }
+    
+    @Test
     public void saveTest() {
         List<Oznam> all = dao.getAll();
         Oznam oznam = new Oznam();

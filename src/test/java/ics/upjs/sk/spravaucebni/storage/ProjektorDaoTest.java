@@ -39,6 +39,23 @@ public class ProjektorDaoTest {
     }
     
     @Test
+    public void getByUcebnaIdTest() {
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        Long ucebnaId = ucebnaDao.getAll().get(0).getId();
+        List<Projektor> allByUcebnaId = dao.getByUcebnaId(ucebnaId);
+        for (Projektor projektor : allByUcebnaId) {
+            assertTrue(projektor.getUcebnaId() == ucebnaId);
+        }
+    }
+    
+    @Test
+    public void getByIdTest() {
+        Projektor o1 = dao.getAll().get(0);
+        Projektor o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
+    }
+    
+    @Test
     public void saveTest() {
         List<Projektor> all = dao.getAll();
         Projektor p = new Projektor();

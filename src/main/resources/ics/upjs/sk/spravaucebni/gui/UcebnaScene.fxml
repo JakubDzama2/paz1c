@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="174.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="ulozitButton" layoutX="137.0" layoutY="133.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Uložiť" />
-      <Label layoutX="14.0" layoutY="35.0" prefHeight="35.0" prefWidth="104.0" text="Názov učebne: " />
+      <Button fx:id="ulozitButton" layoutX="137.0" layoutY="133.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Uložiť" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="133.0" />
+      <Label layoutX="14.0" layoutY="35.0" prefHeight="35.0" prefWidth="104.0" text="Názov učebne: " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="35.0" />
       <TextField fx:id="nazovUcebneTextField" layoutX="170.0" layoutY="70.0" prefHeight="30.0" prefWidth="149.0" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0" />
-      <Label layoutX="14.0" layoutY="4.0" prefHeight="27.0" prefWidth="134.0" text="Zadajte potrebné údaje: " />
-      <Label layoutX="14.0" layoutY="83.0" prefHeight="27.0" prefWidth="86.0" text="Správca učebne:" />
-      <ComboBox fx:id="pouzivatelCombobox" layoutX="118.0" layoutY="84.0" prefWidth="150.0" />
-      <TextField fx:id="nazovUcebneTextField" layoutX="119.0" layoutY="40.0" prefHeight="25.0" prefWidth="150.0" />
+      <Label layoutX="14.0" layoutY="4.0" prefHeight="27.0" prefWidth="134.0" text="Zadajte potrebné údaje: " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="4.0" />
+      <Label layoutX="14.0" layoutY="83.0" prefHeight="27.0" prefWidth="86.0" text="Správca učebne:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="83.0" />
+      <ComboBox fx:id="pouzivatelCombobox" layoutX="118.0" layoutY="84.0" prefWidth="150.0" AnchorPane.leftAnchor="118.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="84.0" />
+      <TextField fx:id="nazovUcebneTextField" layoutX="119.0" layoutY="40.0" prefHeight="25.0" prefWidth="150.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>

@@ -2,7 +2,6 @@ package ics.upjs.sk.spravaucebni.storage;
 
 import ics.upjs.sk.spravaucebni.Spotreba;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,6 +37,23 @@ public class SpotrebaDaoTest {
     public void getAllTest() {
         List<Spotreba> all = dao.getAll();
         assertTrue(all.size() > 0);
+    }
+    
+    @Test
+    public void getByUcebnaIdTest() {
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        Long ucebnaId = ucebnaDao.getAll().get(0).getId();
+        List<Spotreba> allByUcebnaId = dao.getByUcebnaId(ucebnaId);
+        for (Spotreba spotreba : allByUcebnaId) {
+            assertTrue(spotreba.getUcebnaId() == ucebnaId);
+        }
+    }
+    
+    @Test
+    public void getByIdTest() {
+        Spotreba o1 = dao.getAll().get(0);
+        Spotreba o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
     }
     
     @Test

@@ -77,6 +77,13 @@ public class OznamSceneController {
             ulozitButton.getScene().getWindow().hide();
         });
         setUlozitButtonDisable();
+        
+        // nechceme vediet editovat oznam
+        if (aktualnyOznam != null) {
+            menoTextField.setEditable(false);
+            oznamTextArea.setEditable(false);
+            ulozitButton.setDisable(true);
+        }
     }
     
     public boolean jeUlozeny() {

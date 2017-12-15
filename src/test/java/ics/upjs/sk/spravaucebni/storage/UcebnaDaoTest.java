@@ -40,6 +40,31 @@ public class UcebnaDaoTest {
     }
     
     @Test
+    public void getByPouzivatelIdTest() {
+        PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
+        Long pouzivatelId = pouzivatelDao.getAll().get(0).getId();
+        List<Ucebna> allByPouzivatelId = dao.getByPouzivatelId(pouzivatelId);
+        for (Ucebna ucebna : allByPouzivatelId) {
+            assertTrue(ucebna.getIdPouzivatela() == pouzivatelId);
+        }
+    }
+    
+    @Test
+    public void getByIdTest() {
+        Ucebna o1 = dao.getAll().get(0);
+        Ucebna o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
+    }
+    
+    @Test
+    public void getUcebneBezPouzivatelovTest() {
+        List<Ucebna> allBezPouzivatelov = dao.getUcebneBezPouzivatelov();
+        for (Ucebna ucebna : allBezPouzivatelov) {
+            assertTrue(ucebna.getIdPouzivatela() == null);
+        }
+    }
+    
+    @Test
     public void saveTest() {
         List<Ucebna> all = dao.getAll();
         Ucebna u = new Ucebna();

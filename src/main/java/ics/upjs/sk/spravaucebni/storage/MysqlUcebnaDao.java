@@ -121,7 +121,6 @@ public class MysqlUcebnaDao implements UcebnaDao {
         }
         try {
             if (u.getId() == null) {
-                System.out.println("som v ife");
                 SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
                 simpleJdbcInsert.withTableName("ucebna");
                 simpleJdbcInsert.usingGeneratedKeyColumns("id");
@@ -129,9 +128,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
                 Map<String, Object> data = new HashMap<>();
                 data.put("nazov", u.getNazov());
                 data.put("pouzivatel_id", u.getIdPouzivatela());
-                System.out.println("pred insertom");
                 u.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
-                System.out.println("za insertom");
             } else {
   //              delete(u.getId());
                 String sql = "UPDATE ucebna SET nazov = ?, pouzivatel_id = ? WHERE id = " + u.getId();

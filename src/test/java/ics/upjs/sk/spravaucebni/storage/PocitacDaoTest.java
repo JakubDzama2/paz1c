@@ -38,7 +38,24 @@ public class PocitacDaoTest {
         List<Pocitac> all = dao.getAll();
         assertTrue(all.size() > 0);
     }
+    
+    @Test
+    public void getByUcebnaIdTest() {
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        Long ucebnaId = ucebnaDao.getAll().get(0).getId();
+        List<Pocitac> allByUcebnaId = dao.getByUcebnaId(ucebnaId);
+        for (Pocitac pocitac : allByUcebnaId) {
+            assertTrue(pocitac.getUcebnaId() == ucebnaId);
+        }
+    }
    
+    @Test
+    public void getByIdTest() {
+        Pocitac o1 = dao.getAll().get(0);
+        Pocitac o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
+    }
+    
     @Test
     public void saveTest() {
         List<Pocitac> all = dao.getAll();

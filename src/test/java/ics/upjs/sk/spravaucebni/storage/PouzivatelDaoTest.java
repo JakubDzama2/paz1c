@@ -42,6 +42,13 @@ public class PouzivatelDaoTest {
     }
     
     @Test
+    public void getByIdTest() {
+        Pouzivatel o1 = dao.getAll().get(0);
+        Pouzivatel o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
+    }
+    
+    @Test
     public void saveTest() {
         List<Pouzivatel> all = dao.getAll();
         Pouzivatel p = new Pouzivatel();

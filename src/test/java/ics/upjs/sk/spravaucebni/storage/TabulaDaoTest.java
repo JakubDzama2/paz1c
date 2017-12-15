@@ -39,6 +39,23 @@ public class TabulaDaoTest {
     }
     
     @Test
+    public void getByUcebnaIdTest() {
+        UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
+        Long ucebnaId = ucebnaDao.getAll().get(0).getId();
+        List<Tabula> allByUcebnaId = dao.getByUcebnaId(ucebnaId);
+        for (Tabula tabula : allByUcebnaId) {
+            assertTrue(tabula.getUcebnaId() == ucebnaId);
+        }
+    }
+    
+    @Test
+    public void getByIdTest() {
+        Tabula o1 = dao.getAll().get(0);
+        Tabula o2 = dao.getById(o1.getId());
+        assertEquals(o1.getId(), o2.getId());
+    }
+    
+    @Test
     public void saveTest() {
         List<Tabula> all = dao.getAll();
         Tabula t = new Tabula();
