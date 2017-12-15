@@ -4,6 +4,7 @@ import ics.upjs.sk.spravaucebni.Pouzivatel;
 import ics.upjs.sk.spravaucebni.Ucebna;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;

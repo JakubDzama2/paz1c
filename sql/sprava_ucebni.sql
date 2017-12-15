@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pouzivatel` (
   `meno` VARCHAR(200) NOT NULL UNIQUE,
   `heslo` CHAR(60) NOT NULL,
   `sol` CHAR(29) NOT NULL,
-  `posledne_prihlasenie` DATETIME NULL,
+  `posledne_prihlasenie` DATETIME NOT NULL,
   `email` VARCHAR(100) NOT NULL UNIQUE,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`spotreba` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
+ALTER TABLE `spotreba` ADD CONSTRAINT `uniq_datum_ucebnaId` UNIQUE(`datum`, `ucebna_id`);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

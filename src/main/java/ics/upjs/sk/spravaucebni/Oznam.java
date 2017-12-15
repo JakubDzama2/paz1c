@@ -1,6 +1,7 @@
 package ics.upjs.sk.spravaucebni;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Oznam {
 
@@ -52,7 +53,8 @@ public class Oznam {
 
     @Override
     public String toString() {
-        return getHlasatel() + " - " + getPoznamka();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy H:m");
+        return getHlasatel() + ":   " + getCas().format(formatter);
     }
     
     
