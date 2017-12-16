@@ -5,8 +5,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="pridatPouzivatelaButton" layoutX="26.0" layoutY="95.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Pridať používateľa" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="95.0" />
-      <Button fx:id="upravitPouzivatelaButton" layoutX="26.0" layoutY="220.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Upraviť používateľa" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="220.0" />
+      <Button fx:id="upravitPouzivatelaButton" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Používatelia" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="201.0" AnchorPane.topAnchor="146.0" />
       <Button fx:id="upravitUcebnuButton" layoutX="201.0" layoutY="146.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Učebne" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="146.0" />
    </children>
 </AnchorPane>

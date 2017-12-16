@@ -4,11 +4,13 @@ import ics.upjs.sk.spravaucebni.Spotreba;
 import ics.upjs.sk.spravaucebni.storage.DaoFactory;
 import ics.upjs.sk.spravaucebni.storage.SpotrebaDao;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class SpotrebaFxModel {
 
@@ -110,5 +112,28 @@ public class SpotrebaFxModel {
         this.celkovaCena = celkovaCena;
     }
     
+    public DefaultCategoryDataset vytvorDataset(boolean spotrebaControl) {
+      DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+      
+      String tentoMesiac = "Tento mesiac";
+      String minulyMesiac = "Minulý mesiac";
+      String predRokom = "Minulý rok v daný mesiac";
+      
+      List<Integer> hodnotaX = new ArrayList<>();
+      List<Integer> hodnotaY = new ArrayList<>();
+      
+      if(spotrebaControl){
+          for(JednaSpotrebaFxModel s :spotreby){
+              dataset.addValue(s.getHodnota(),tentoMesiac,s.getDatum().toString());
+          }
+      }else {
+          for(JednaSpotrebaFxModel s :spotreby){
+              dataset.addValue(s.getCena(),tentoMesiac,s.getDatum().toString());
+          }
+      }
+      
+      
+      return dataset;
+   }
     
 }

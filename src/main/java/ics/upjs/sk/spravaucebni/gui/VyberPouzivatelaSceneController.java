@@ -1,7 +1,6 @@
 package ics.upjs.sk.spravaucebni.gui;
 
 import ics.upjs.sk.spravaucebni.Pouzivatel;
-import ics.upjs.sk.spravaucebni.Ucebna;
 import ics.upjs.sk.spravaucebni.storage.DaoFactory;
 import ics.upjs.sk.spravaucebni.storage.PouzivatelDao;
 import java.io.IOException;
