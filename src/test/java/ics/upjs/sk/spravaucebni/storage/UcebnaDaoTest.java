@@ -82,6 +82,5 @@ public class UcebnaDaoTest {
         boolean jeZmazany = dao.delete(u.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
-        //dao.save(u);
     }
 }

@@ -73,6 +73,5 @@ public class TabulaDaoTest {
         boolean jeZmazany = dao.delete(t.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
- //       dao.save(t);
     }
 }

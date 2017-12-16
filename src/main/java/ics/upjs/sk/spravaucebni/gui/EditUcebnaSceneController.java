@@ -38,7 +38,6 @@ public class EditUcebnaSceneController {
 
     public EditUcebnaSceneController(Ucebna ucebna) {
         this.ucebna = ucebna;
-        System.out.println(ucebna.getNazov());
     }
     
     @FXML
@@ -57,10 +56,10 @@ public class EditUcebnaSceneController {
             VyberTabuluSceneController controller = new VyberTabuluSceneController(ucebna.getId());
             nextWindow(controller,"VyberTabuluScene.fxml", "Tabule učebne: " + ucebna.getNazov());
         });
- //       spotrebaButton.setOnAction(eh -> {
- //           ZmazatPouzivatelaSceneController controller = new ZmazatPouzivatelaSceneController();
- //           nextWindow(controller,".fxml");
- //       });
+        spotrebaButton.setOnAction(eh -> {
+            SpotrebaSceneController controller = new SpotrebaSceneController(ucebna.getId());
+            nextWindow(controller,"SpotrebaScene.fxml", "Spotreby učebne: " + ucebna.getNazov());
+        });
         oznamyButton.setOnAction(eh -> {
             VyberOznamSceneController controller = new VyberOznamSceneController(ucebna.getId());
             nextWindow(controller,"VyberOznamScene.fxml", "Oznamy učebne: " + ucebna.getNazov());

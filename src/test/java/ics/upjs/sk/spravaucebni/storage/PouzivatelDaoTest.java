@@ -68,6 +68,5 @@ public class PouzivatelDaoTest {
         boolean jeZmazany = dao.delete(p.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
-//        dao.save(p);
     }
 }

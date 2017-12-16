@@ -11,6 +11,8 @@ public interface SpotrebaDao {
     
     public Spotreba getById(Long id);
     
+    public List<Spotreba> getByDatumAndUcebnaId(int rok, int mesiac, Long id);
+    
     public boolean save(Spotreba spotreba);
     
     public boolean delete(Long id);

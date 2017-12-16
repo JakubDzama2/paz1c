@@ -66,6 +66,23 @@ public class MysqlSpotrebaDao implements SpotrebaDao {
         });
     }
     
+    @Override
+    public List<Spotreba> getByDatumAndUcebnaId(int rok, int mesiac, Long id) {
+        String sql = "SELECT id, datum, hodnota, ucebna_id FROM spotreba WHERE year(datum) = " + rok + " AND"
+                + " month(datum) = " + mesiac + " AND ucebna_id = " + id + " ORDER BY datum";
+        return jdbcTemplate.query(sql, new RowMapper<Spotreba> () {
+            @Override
+            public Spotreba mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Spotreba spotreba = new Spotreba();
+                spotreba.setId(rs.getLong("id"));
+                spotreba.setHodnota(rs.getInt("hodnota"));
+                spotreba.setDatum(rs.getDate("datum").toLocalDate());
+                spotreba.setUcebnaId(rs.getLong("ucebna_id"));
+                return spotreba;
+            }
+        });
+    }
+    
     
 
     @Override

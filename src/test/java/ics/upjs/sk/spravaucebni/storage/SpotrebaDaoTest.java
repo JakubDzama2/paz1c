@@ -57,6 +57,19 @@ public class SpotrebaDaoTest {
     }
     
     @Test
+    public void getByDatumAndUcebnaIdTest() {
+        Spotreba spotreba = dao.getAll().get(0);
+        List<Spotreba> spotreby = dao.getByDatumAndUcebnaId
+        (spotreba.getDatum().getYear(), spotreba.getDatum().getMonthValue(), spotreba.getUcebnaId());
+        for (Spotreba spotreba1 : spotreby) {
+            assertTrue(spotreba1.getDatum().getYear() == spotreba.getDatum().getYear());
+            assertTrue(spotreba1.getDatum().getMonthValue() == spotreba.getDatum().getMonthValue());
+            assertTrue(spotreba1.getUcebnaId() == spotreba.getUcebnaId());
+        }
+        
+    }
+    
+    @Test
     public void saveTest() {
         List<Spotreba> all = dao.getAll();
         Spotreba s = new Spotreba();
@@ -74,6 +87,5 @@ public class SpotrebaDaoTest {
         boolean jeZmazany = dao.delete(s.getId());
         assertTrue(jeZmazany);
         assertTrue(velkost - 1 == dao.getAll().size());
- //       dao.save(s);
     }
 }
