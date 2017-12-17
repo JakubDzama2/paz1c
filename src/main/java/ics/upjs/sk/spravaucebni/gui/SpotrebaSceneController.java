@@ -105,8 +105,8 @@ public class SpotrebaSceneController {
         nastavLabely();
         
         vykresliGrafButton.setOnAction(eh -> {
-            vytvorPrislusnyGraf("Hodnoty", "Test Hodnot", "ahoj", "svet", true);
-            vytvorPrislusnyGraf("Ceny", "Test Cien", "ahoj", "svet", false);
+            vytvorPrislusnyGraf("Hodnoty", "Graf nameraných spotrieb počas jednotlivých dní", "Deň v mesiaci", "Spoteba v kWh", true);
+        //    vytvorPrislusnyGraf("Ceny", "Graf denných výdavkov na elektrinu", "Deň v mesiaci", "Cena spotrebovanej elektriny v EUR", false);
         });
     }
     
@@ -128,7 +128,7 @@ public class SpotrebaSceneController {
         Stage stage = new Stage();
         
         stage.setTitle(stageTitle);
-        stage.setScene(new Scene(pane, 450, 450));
+        stage.setScene(new Scene(pane, 900, 500));
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = screenSize.getWidth();
@@ -157,18 +157,16 @@ public class SpotrebaSceneController {
                 PlotOrientation.VERTICAL,
                 true,true,false);
                 
-                
-                
                 ChartPanel chartPanel = new ChartPanel( lineChart );
                 chartPanel.setPreferredSize( new java.awt.Dimension( 450 , 450 ) );
                 
                 CategoryPlot plot = (CategoryPlot) lineChart.getPlot();
-		plot.setBackgroundPaint(Color.blue);
+		plot.setBackgroundPaint(Color.white);
 		plot.setRangeGridlinePaint(Color.black);
                 
                 LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-		renderer.setDefaultFillPaint(Color.white);
-		renderer.setDrawOutlines(true);
+		renderer.setDefaultFillPaint(Color.yellow);
+		
 		renderer.setUseFillPaint(true);
 		renderer.setDefaultShapesFilled(true);
                 renderer.setDefaultShapesVisible(true);

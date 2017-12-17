@@ -22,6 +22,7 @@ public class SpotrebaFxModel {
     private int celkovaSpotreba;
     private double priemernaSpotreba;
     private double celkovaCena;
+    private static final double PRIEMERNA_CENA_SPOTREBY = 0.15;
 
     public SpotrebaFxModel(Long ucebnaId) {
         this.ucebnaId = ucebnaId;
@@ -39,7 +40,7 @@ public class SpotrebaFxModel {
             JednaSpotrebaFxModel jednaSpotrebaFxModel = new JednaSpotrebaFxModel();
             jednaSpotrebaFxModel.setDatum(spotreba.getDatum());
             jednaSpotrebaFxModel.setHodnota(spotreba.getHodnota());
-            jednaSpotrebaFxModel.setCena(spotreba.getHodnota()*0.15);
+            jednaSpotrebaFxModel.setCena(spotreba.getHodnota()*PRIEMERNA_CENA_SPOTREBY);
             spotreby.add(jednaSpotrebaFxModel);
             celkovaSpotreba += spotreba.getHodnota();
             celkovaCena += jednaSpotrebaFxModel.getCena();
@@ -119,16 +120,39 @@ public class SpotrebaFxModel {
       String minulyMesiac = "Minulý mesiac";
       String predRokom = "Minulý rok v daný mesiac";
       
-      List<Integer> hodnotaX = new ArrayList<>();
-      List<Integer> hodnotaY = new ArrayList<>();
+      int spravnyRok = getRok() - 1;
+       List<Spotreba> spotrebyMinulyRok = spotrebaDao.getByDatumAndUcebnaId(spravnyRok, getMesiac(), ucebnaId);
+      List<Spotreba> spotrebyMinulyMesiac;
+       int spravnyMesiac;
+      if(getMesiac() == 1){
+          spravnyMesiac = 12;
+          spotrebyMinulyMesiac = spotrebaDao.getByDatumAndUcebnaId(spravnyRok, spravnyMesiac, ucebnaId);
+      }else{
+         spravnyMesiac = getMesiac() - 1;
+          spotrebyMinulyMesiac = spotrebaDao.getByDatumAndUcebnaId(getRok(), spravnyMesiac, ucebnaId);
+      }
+      
+      
       
       if(spotrebaControl){
           for(JednaSpotrebaFxModel s :spotreby){
-              dataset.addValue(s.getHodnota(),tentoMesiac,s.getDatum().toString());
+              dataset.addValue(s.getHodnota(),tentoMesiac,Integer.toString(s.getDatum().getDayOfMonth()));
+          }
+          for(Spotreba s :spotrebyMinulyRok){
+              dataset.addValue(s.getHodnota(),predRokom,Integer.toString(s.getDatum().getDayOfMonth()));
+          }
+          for(Spotreba s :spotrebyMinulyMesiac){
+              dataset.addValue(s.getHodnota(),minulyMesiac,Integer.toString(s.getDatum().getDayOfMonth()));
           }
       }else {
           for(JednaSpotrebaFxModel s :spotreby){
-              dataset.addValue(s.getCena(),tentoMesiac,s.getDatum().toString());
+              dataset.addValue(s.getCena(),tentoMesiac,Integer.toString(s.getDatum().getDayOfMonth()));
+          }
+          for(Spotreba s :spotrebyMinulyRok){
+              dataset.addValue(s.getHodnota()*PRIEMERNA_CENA_SPOTREBY,predRokom,Integer.toString(s.getDatum().getDayOfMonth()));
+          }
+          for(Spotreba s :spotrebyMinulyMesiac){
+              dataset.addValue(s.getHodnota()*PRIEMERNA_CENA_SPOTREBY,minulyMesiac,Integer.toString(s.getDatum().getDayOfMonth()));
           }
       }
       
