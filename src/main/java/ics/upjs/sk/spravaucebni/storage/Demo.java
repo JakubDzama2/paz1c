@@ -7,6 +7,7 @@ import ics.upjs.sk.spravaucebni.Projektor;
 import ics.upjs.sk.spravaucebni.Spotreba;
 import ics.upjs.sk.spravaucebni.Tabula;
 import ics.upjs.sk.spravaucebni.Ucebna;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class Demo {
 
     public static void main(String[] args) {
-        
+      /*  
         UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
         List<Ucebna> ucebne = ucebnaDao.getAll();
         
@@ -140,5 +141,23 @@ public class Demo {
         }
         }
 */
+      
+      SpotrebaDao spotrebaDao = DaoFactory.INSTANCE.getSpotrebaDao();
+      LocalDate date = LocalDate.now();
+        for (int y = 0; y < 30; y++) {
+            for (int i = 1; i < 31; i++) {
+            Spotreba s = new Spotreba();
+            s.setDatum(date);
+            s.setHodnota(200 + (int)(Math.random()*500));
+            s.setUcebnaId(1L);
+            spotrebaDao.save(s);
+            Spotreba s1 = new Spotreba();
+            s1.setDatum(date);
+            s1.setHodnota(100 + (int)(Math.random()*600));
+            s1.setUcebnaId(2L);
+            spotrebaDao.save(s1);
+            date = date.minusDays(1);
+            }
+        }
     }
 }

@@ -72,11 +72,11 @@ public class VyberPouzivatelaSceneController {
         });
         
         pridatPouzivatelaButton.setOnAction(eh ->{
-            NovyPouzivatelSceneController controller = new NovyPouzivatelSceneController();
+            PouzivatelSceneController controller = new PouzivatelSceneController();
             
             try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("NovyPouzivatelScene.fxml"));
+                    getClass().getResource("PouzivatelScene.fxml"));
             loader.setController(controller);
 
             Parent parentPane = loader.load();

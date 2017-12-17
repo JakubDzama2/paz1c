@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class NovyPouzivatelFxModel {
+public class PouzivatelFxModel {
     private StringProperty meno = new SimpleStringProperty();
     private StringProperty heslo = new SimpleStringProperty();
     private StringProperty mail = new SimpleStringProperty();
@@ -25,7 +25,7 @@ public class NovyPouzivatelFxModel {
     private Map<Long, BooleanProperty> ucebneBezSpravcuMap = new HashMap<>();
     
 
-    public NovyPouzivatelFxModel() {
+    public PouzivatelFxModel() {
          
         
          for (Ucebna u: ucebne) {

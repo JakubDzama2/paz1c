@@ -16,7 +16,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 
-public class NovyPouzivatelSceneController {
+public class PouzivatelSceneController {
 
     @FXML
     private ResourceBundle resources;
@@ -39,7 +39,7 @@ public class NovyPouzivatelSceneController {
     @FXML
     private FlowPane ucebneFlowPane;
 
-    private NovyPouzivatelFxModel model = new NovyPouzivatelFxModel();
+    private PouzivatelFxModel model = new PouzivatelFxModel();
     private PouzivatelDao pouzivatelDao = DaoFactory.INSTANCE.getPouzivatelDao();
     private List<Pouzivatel> pouzivatelia = pouzivatelDao.getAll();
     private UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();

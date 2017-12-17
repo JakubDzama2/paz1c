@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="415.0" stylesheets="@SpotrebaScene.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="spotrebyTableView" layoutX="14.0" layoutY="107.0" prefHeight="339.0" prefWidth="386.0">
+      <TableView fx:id="spotrebyTableView" layoutX="14.0" layoutY="107.0" minWidth="386.0" prefHeight="339.0" prefWidth="386.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-background-color: lightblue;" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="107.0">
         <columns>
           <TableColumn prefWidth="129.0" text="C1" />
           <TableColumn prefWidth="137.0" text="C2" />
         </columns>
       </TableView>
-      <Button fx:id="vykresliGrafButton" layoutX="317.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Vykresli graf" />
-      <Label layoutX="14.0" layoutY="14.0" text="Zadajte jednotlivé údaje:" />
-      <Label layoutX="14.0" layoutY="50.0" text="Rok:" />
-      <Label layoutX="155.0" layoutY="50.0" text="Mesiac:" />
-      <Label fx:id="priemernaSpotrebaLabel" layoutX="12.0" layoutY="456.0" text="Label" />
-      <Label fx:id="celkovaSpotrebaLabel" layoutX="12.0" layoutY="486.0" text="Label" />
-      <Label fx:id="celkovaCenaLabel" layoutX="12.0" layoutY="516.0" text="Label" />
-      <Spinner fx:id="rokSpinner" layoutX="44.0" layoutY="46.0" prefHeight="25.0" prefWidth="100.0" />
-      <Spinner fx:id="mesiacSpinner" layoutX="207.0" layoutY="46.0" prefHeight="25.0" prefWidth="100.0" />
+      <Button fx:id="vykresliGrafButton" layoutX="317.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Vykresli graf" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="46.0" />
+      <Label layoutX="14.0" layoutY="14.0" style="-fx-font: bold 10pt &quot;Arial&quot;;" text="Zadajte jednotlivé údaje:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Label layoutX="14.0" layoutY="50.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Rok:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0" />
+      <Label layoutX="155.0" layoutY="50.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Mesiac:" AnchorPane.leftAnchor="155.0" AnchorPane.topAnchor="50.0" />
+      <Label fx:id="priemernaSpotrebaLabel" layoutX="12.0" layoutY="456.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Label" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="12.0" />
+      <Label fx:id="celkovaSpotrebaLabel" layoutX="12.0" layoutY="486.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Label" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="12.0" />
+      <Label fx:id="celkovaCenaLabel" layoutX="12.0" layoutY="516.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Label" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="12.0" />
+      <Spinner fx:id="rokSpinner" layoutX="44.0" layoutY="46.0" prefHeight="25.0" prefWidth="100.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="46.0" />
+      <Spinner fx:id="mesiacSpinner" layoutX="207.0" layoutY="46.0" prefHeight="25.0" prefWidth="100.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="207.0" AnchorPane.topAnchor="46.0" />
    </children>
 </AnchorPane>

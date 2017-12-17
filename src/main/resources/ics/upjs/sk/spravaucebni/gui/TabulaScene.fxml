@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="310.0" stylesheets="@TabScene.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Vykonajte príslušné úpravy:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <Label layoutX="34.0" layoutY="64.0" text="Typ taule:" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="64.0" />
-      <Label layoutX="34.0" layoutY="106.0" text="Počet písatiek:" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="106.0" />
-      <TextField fx:id="typTextField" layoutX="101.0" layoutY="61.0" prefHeight="25.0" prefWidth="187.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="61.0" />
-      <Spinner fx:id="pocetPisatiekSpinner" layoutX="129.0" layoutY="102.0" prefHeight="25.0" prefWidth="95.0" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="102.0" />
-      <Button fx:id="ulozitButton" layoutX="121.0" layoutY="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Uložiť" AnchorPane.bottomAnchor="25.0" />
+      <Label layoutX="14.0" layoutY="14.0" style="-fx-font: bold 10pt &quot;Arial&quot;;" text="Vykonajte príslušné úpravy:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Label layoutX="34.0" layoutY="64.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Typ taule:" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="64.0" />
+      <Label layoutX="34.0" layoutY="106.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Počet písatiek:" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="106.0" />
+      <TextField fx:id="typTextField" layoutX="128.0" layoutY="61.0" prefHeight="25.0" prefWidth="160.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="61.0" />
+      <Spinner fx:id="pocetPisatiekSpinner" layoutX="129.0" layoutY="102.0" prefHeight="25.0" prefWidth="95.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="102.0" />
+      <Button fx:id="ulozitButton" layoutX="121.0" layoutY="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" style="-fx-font: bold italic 10pt &quot;Arial&quot;; -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" text="Uložiť" AnchorPane.bottomAnchor="25.0" />
    </children>
 </AnchorPane>

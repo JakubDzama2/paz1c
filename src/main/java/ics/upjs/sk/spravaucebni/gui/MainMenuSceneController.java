@@ -58,7 +58,7 @@ public class MainMenuSceneController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle(title);
-          
+            scene.getStylesheets().add(MainMenuSceneController.class.getResource("MainMenuScene.css").toExternalForm());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException iOException) {

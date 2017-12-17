@@ -20,6 +20,7 @@ public class SpravaUcebniApp extends Application {
         
         stage.setScene(scene);
         stage.setTitle("Správa učební");
+        scene.getStylesheets().add(SpravaUcebniApp.class.getResource("MainMenuScene.css").toExternalForm());
         stage.show();
     }
     

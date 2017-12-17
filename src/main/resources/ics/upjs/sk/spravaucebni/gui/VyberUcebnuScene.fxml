@@ -8,26 +8,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="428.0" prefWidth="327.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="428.0" prefWidth="327.0" stylesheets="@UcebnaScene.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="vyberUcebnuListView" layoutX="14.0" layoutY="60.0" prefHeight="289.0" prefWidth="299.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="60.0" />
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="200.0" text="Vyberte učebňu pre editovanie: " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <ListView fx:id="vyberUcebnuListView" layoutX="14.0" layoutY="60.0" prefHeight="289.0" prefWidth="299.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="60.0" />
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="217.0" style="-fx-font: bold 10pt &quot;Arial&quot;;" text="Vyberte učebňu pre editovanie: " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
       <HBox layoutX="14.0" layoutY="327.0" prefHeight="59.0" prefWidth="268.0" spacing="70.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <children>
             <VBox prefHeight="59.0" prefWidth="120.0" spacing="5.0">
                <children>
-                  <Button fx:id="zmazatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Zmazať" />
-                  <Button fx:id="editovatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Editovať" />
+                  <Button fx:id="zmazatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Zmazať" />
+                  <Button fx:id="editovatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Editovať" />
                </children>
             </VBox>
             <VBox prefHeight="59.0" prefWidth="120.0" spacing="5.0">
                <children>
-                  <Button fx:id="pridatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Pridať">
+                  <Button fx:id="pridatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Pridať">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="pokracovatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Pokračovať" />
+                  <Button fx:id="pokracovatButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Pokračovať" />
                </children>
                <HBox.margin>
                   <Insets left="50.0" />

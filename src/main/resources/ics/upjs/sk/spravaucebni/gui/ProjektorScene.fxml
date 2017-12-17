@@ -6,17 +6,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="357.0" stylesheets="@ProjektorScene.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="102.0" prefHeight="17.0" prefWidth="142.0" text="Počet nasvietenych hodín:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="102.0" />
-      <Label layoutX="14.0" layoutY="142.0" prefHeight="17.0" prefWidth="158.0" text="Očakávaná životnosť lampy:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="142.0" />
-      <Label layoutX="14.0" layoutY="63.0" prefHeight="17.0" prefWidth="158.0" text="Názov modelu:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="63.0" />
-      <Label layoutX="14.0" layoutY="195.0" prefHeight="17.0" prefWidth="158.0" text="Stručný popis kvality obrazu:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="195.0" />
-      <TextArea fx:id="popisTextArea" layoutX="14.0" layoutY="221.0" prefHeight="84.0" prefWidth="328.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="221.0" />
-      <TextField fx:id="zivotnostTextField" layoutX="194.0" layoutY="140.0" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
-      <TextField fx:id="nasvieteneTextField" layoutX="194.0" layoutY="100.0" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0" />
-      <TextField fx:id="modelTextField" layoutX="194.0" layoutY="61.0" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="61.0" />
-      <Button fx:id="ulozitButton" layoutX="290.0" layoutY="332.0" mnemonicParsing="false" text="Uložiť" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="19.0" />
-      <Label layoutX="14.0" layoutY="27.0" prefHeight="17.0" prefWidth="158.0" text="Vykonajte príslušné úpravy:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="27.0" />
+      <Label layoutX="14.0" layoutY="102.0" prefHeight="17.0" prefWidth="158.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Počet nasvietenych hodín:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="102.0" />
+      <Label layoutX="14.0" layoutY="142.0" prefHeight="17.0" prefWidth="166.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Očakávaná životnosť lampy:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="142.0" />
+      <Label layoutX="14.0" layoutY="63.0" prefHeight="17.0" prefWidth="158.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Názov modelu:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="63.0" />
+      <Label layoutX="14.0" layoutY="195.0" prefHeight="17.0" prefWidth="183.0" style="-fx-font: bold 9pt &quot;Arial&quot;;" text="Stručný popis kvality obrazu:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="195.0" />
+      <TextArea fx:id="popisTextArea" layoutX="14.0" layoutY="221.0" prefHeight="84.0" prefWidth="328.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="221.0" />
+      <TextField fx:id="zivotnostTextField" layoutX="194.0" layoutY="140.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
+      <TextField fx:id="nasvieteneTextField" layoutX="194.0" layoutY="100.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0" />
+      <TextField fx:id="modelTextField" layoutX="194.0" layoutY="61.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="61.0" />
+      <Button fx:id="ulozitButton" layoutX="290.0" layoutY="332.0" mnemonicParsing="false" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 9pt &quot;Arial&quot;;" text="Uložiť" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="19.0" />
+      <Label layoutX="14.0" layoutY="27.0" prefHeight="17.0" prefWidth="183.0" style="-fx-font: bold 10pt &quot;Arial&quot;;" text="Vykonajte príslušné úpravy:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="27.0" />
    </children>
 </AnchorPane>
