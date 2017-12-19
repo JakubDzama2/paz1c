@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class SpravaUcebniApp extends Application {
@@ -20,6 +21,13 @@ public class SpravaUcebniApp extends Application {
         
         stage.setScene(scene);
         stage.setTitle("Správa učební");
+        
+        stage.setMaxWidth(600);
+        stage.setMinWidth(380);
+        stage.setMaxHeight(408);
+        stage.setMinHeight(360);
+        
+        //stage.getIcons().add(new Image("src/main/resources/settings.png"));
         scene.getStylesheets().add(SpravaUcebniApp.class.getResource("MainMenuScene.css").toExternalForm());
         stage.show();
     }

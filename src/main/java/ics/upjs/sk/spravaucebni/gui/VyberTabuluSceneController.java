@@ -95,6 +95,11 @@ public class VyberTabuluSceneController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle(title);
+            
+            stage.setMinWidth(310);
+            stage.setMinHeight(230);
+            stage.setMaxHeight(626);
+            stage.setMaxWidth(626);
           
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();

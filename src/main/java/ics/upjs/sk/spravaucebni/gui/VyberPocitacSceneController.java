@@ -115,6 +115,11 @@ public class VyberPocitacSceneController {
             stage.setScene(scene);
             stage.setTitle(title);
           
+            stage.setMinWidth(355);
+            stage.setMinHeight(250);
+            stage.setMaxWidth(626);
+            stage.setMaxHeight(626);
+            
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException iOException) {

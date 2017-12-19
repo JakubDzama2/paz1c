@@ -127,6 +127,17 @@ public class VyberUcebnuSceneController {
             stage.setScene(scene);
             stage.setTitle(title);
           
+            if(resourceFXMLString.equalsIgnoreCase("EditUcebnaScene.fxml")){
+                stage.setMinWidth(520);
+                stage.setMinHeight(350);
+            }else{
+                stage.setMinWidth(310);
+                stage.setMinHeight(200);
+            }
+            
+            stage.setMaxWidth(626);
+            stage.setMaxHeight(626);
+            
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException iOException) {

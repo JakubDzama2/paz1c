@@ -104,6 +104,11 @@ public class VyberProjektorSceneController {
             stage.setScene(scene);
             stage.setTitle(title);
           
+            stage.setMinWidth(380);
+            stage.setMinHeight(360);
+            stage.setMaxWidth(626);
+            stage.setMaxHeight(626);
+            
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException iOException) {

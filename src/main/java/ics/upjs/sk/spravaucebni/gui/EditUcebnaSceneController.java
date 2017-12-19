@@ -79,6 +79,17 @@ public class EditUcebnaSceneController {
             stage.setScene(scene);
             stage.setTitle(title);
           
+            
+            if(resourceFXMLString.equalsIgnoreCase("SpotrebaScene.fxml")){
+                stage.setMinWidth(425);
+                stage.setMinHeight(555);
+            }else{
+                stage.setMinWidth(300);
+                stage.setMinHeight(370);
+            }
+            
+            stage.setMaxWidth(626);
+            stage.setMaxHeight(626);
 
             stage.show();
         } catch (IOException iOException) {

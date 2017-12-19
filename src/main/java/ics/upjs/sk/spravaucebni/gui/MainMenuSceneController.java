@@ -58,6 +58,12 @@ public class MainMenuSceneController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle(title);
+            
+            stage.setMaxWidth(626);
+            stage.setMinWidth(300);
+            stage.setMaxHeight(626);
+            stage.setMinHeight(360);
+            
             scene.getStylesheets().add(MainMenuSceneController.class.getResource("MainMenuScene.css").toExternalForm());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();

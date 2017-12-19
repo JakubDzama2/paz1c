@@ -86,6 +86,11 @@ public class VyberPouzivatelaSceneController {
             stage.setScene(scene);
             stage.setTitle("Pridanie nového používateľa");
           
+            stage.setMinWidth(335);
+            stage.setMinHeight(335);
+            stage.setMaxWidth(626);
+            stage.setMaxHeight(626);
+            
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             model.nacitaj();
