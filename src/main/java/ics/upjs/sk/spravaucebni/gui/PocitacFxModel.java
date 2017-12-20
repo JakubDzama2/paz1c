@@ -78,7 +78,7 @@ public class PocitacFxModel {
         this.pocetChyb = pocetChyb;
     }
     
-    public void ulozAktualnyPocitac() {
+    public boolean ulozAktualnyPocitac() {
         if (aktualnyPocitac == null) {
             aktualnyPocitac = new Pocitac();
         }
@@ -87,7 +87,7 @@ public class PocitacFxModel {
         aktualnyPocitac.setPoslednePouzitie(getPoslednePouzitie());
         aktualnyPocitac.setUcebnaId(ucebnaId);
         PocitacDao pocitacDao = DaoFactory.INSTANCE.getPocitacDao();
-        pocitacDao.save(aktualnyPocitac);
+        return pocitacDao.save(aktualnyPocitac);
     }
     
 }

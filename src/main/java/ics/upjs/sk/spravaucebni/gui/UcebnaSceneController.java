@@ -7,6 +7,7 @@ import ics.upjs.sk.spravaucebni.storage.PouzivatelDao;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -87,9 +88,19 @@ public class UcebnaSceneController {
         }));
         
         ulozitButton.setOnAction(eh -> {
-            ulozeny = true;
-            model.ulozStav();
-            ulozitButton.getScene().getWindow().hide();
+            if (model.ulozAktualnuUcebnu()) {
+                ulozeny = true;
+                ulozitButton.getScene().getWindow().hide();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Niektoré zadané údaje sú chybné");
+                
+                alert.setContentText("Učebňa s názvom: " + model.getNazov() + " už existuje. Prosím, zmeňte názov učebne.");
+
+                alert.showAndWait();
+            }
+            
         });
         
     }

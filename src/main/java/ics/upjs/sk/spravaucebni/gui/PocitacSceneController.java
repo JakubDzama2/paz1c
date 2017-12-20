@@ -1,9 +1,15 @@
 package ics.upjs.sk.spravaucebni.gui;
 
 import ics.upjs.sk.spravaucebni.Pocitac;
+import ics.upjs.sk.spravaucebni.Ucebna;
+import ics.upjs.sk.spravaucebni.storage.DaoFactory;
+import ics.upjs.sk.spravaucebni.storage.PocitacDao;
+import ics.upjs.sk.spravaucebni.storage.UcebnaDao;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -82,9 +88,37 @@ public class PocitacSceneController {
         }));
         
         ulozitButton.setOnAction(eh -> {
-            model.ulozAktualnyPocitac();
-            ulozeny = true;
-            ulozitButton.getScene().getWindow().hide();
+            if (model.ulozAktualnyPocitac()) {
+                ulozeny = true;
+                ulozitButton.getScene().getWindow().hide();
+            } else {
+                String sprava = "";
+                PocitacDao pocitacDao = DaoFactory.INSTANCE.getPocitacDao();
+                List<Pocitac> pocitace = pocitacDao.getAll();
+                boolean zleSerCislo = false;
+                boolean zlaMac = false;
+                for (Pocitac pocitac : pocitace) {
+                    if (!zleSerCislo && pocitac.getSerioveCislo().equalsIgnoreCase(model.getSerioveCislo())) {
+                        sprava += "Počítač so sériovým číslom: " + model.getSerioveCislo() +
+                                " už existuje. Prosím, zmeňte sériové číslo počítača.\n";
+                    }
+                    if (!zlaMac && pocitac.getMacAdresa().equalsIgnoreCase(model.getMacAdresa())) {
+                        sprava += "Počítač so MAC adresou: " + model.getMacAdresa() +
+                                " už existuje. Prosím, zmeňte MAC adresu počítača.\n";
+                    }
+                    if (zleSerCislo && zlaMac) {
+                        break;
+                    }
+                }
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Niektoré zadané údaje sú chybné");
+                
+                alert.setContentText(sprava);
+
+                alert.showAndWait();
+            }
         });
         setUlozitButtonDisable();
     }
@@ -92,6 +126,7 @@ public class PocitacSceneController {
     public boolean jeUlozeny() {
         return ulozeny;
     }
+    
     
     private boolean goodTextValue(String value) {
         return value != null && !value.trim().isEmpty();

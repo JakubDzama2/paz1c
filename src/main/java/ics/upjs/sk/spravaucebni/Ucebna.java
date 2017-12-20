@@ -88,7 +88,7 @@ public class Ucebna {
         if (idPouzivatela != null && idPouzivatela != 0) {
             return getNazov() + "     " + pouzivatelDao.getById(idPouzivatela).getMeno();
         } else {
-            return getNazov() + "     nemá správcu";
+            return getNazov() + "     bez správcu";
         }
     }
     

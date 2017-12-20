@@ -62,21 +62,18 @@ public class UcebnaFxModel {
         return pouzivatelia;
     }
     
-    public void ulozStav() {
+    public boolean ulozAktualnuUcebnu() {
         if (aktualnaUcebna == null) {
             Ucebna ucebna = new Ucebna();
             aktualnaUcebna = ucebna;
         }
         aktualnaUcebna.setNazov(getNazov());
-        if (getPouzivatel() == null) {
-            System.out.println("p je null");
-        }
         if (getPouzivatel().getMeno().equals("--bez správcu--")) {
             aktualnaUcebna.setIdPouzivatela(null);
         } else {
             aktualnaUcebna.setIdPouzivatela(getPouzivatel().getId());
         }
-        ucebnaDao.save(aktualnaUcebna);
+        return ucebnaDao.save(aktualnaUcebna);
     }
     
 }
