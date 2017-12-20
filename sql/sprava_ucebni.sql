@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS `sprava_ucebni`.`pouzivatel` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `meno` VARCHAR(200) NOT NULL UNIQUE,
   `heslo` CHAR(60) NOT NULL,
-  `sol` CHAR(29) NOT NULL,
   `posledne_prihlasenie` DATETIME NOT NULL,
   `email` VARCHAR(100) NOT NULL UNIQUE,
   PRIMARY KEY (`id`))
@@ -144,8 +143,8 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `sol`, `posledne_prihlasenie`, `email`) VALUES ('Dzama', '$2a$10$dHulBDcXGdqjIICmSVnBUO9Za0ahpc1qW.0F7g.8eSGV0AyFZbr3i', '$2a$10$dHulBDcXGdqjIICmSVnBUO', '2017-12-06 12:45', 'dzama@sranda.ks');
-INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `sol`, `posledne_prihlasenie`, `email`) VALUES ('Karas', '$2a$10$LT82ytlN6ngYqSk.YexZreMV6zC9EMMnvIFCA/du3OZFOFu6/MZNy', '$2a$10$LT82ytlN6ngYqSk.YexZre', '2017-10-23 20:34', 'karas@jaja.aj');
+INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `posledne_prihlasenie`, `email`) VALUES ('Dzama', '$2a$10$dHulBDcXGdqjIICmSVnBUO9Za0ahpc1qW.0F7g.8eSGV0AyFZbr3i', '2017-12-06 12:45', 'dzama@sranda.ks');
+INSERT INTO `sprava_ucebni`.`pouzivatel` (`meno`, `heslo`, `posledne_prihlasenie`, `email`) VALUES ('Karas', '$2a$10$LT82ytlN6ngYqSk.YexZreMV6zC9EMMnvIFCA/du3OZFOFu6/MZNy', '2017-10-23 20:34', 'karas@jaja.aj');
 
 INSERT INTO `sprava_ucebni`.`ucebna` (`nazov`, `pouzivatel_id`) VALUES ('SJSP19', '1');
 INSERT INTO `sprava_ucebni`.`ucebna` (`nazov`, `pouzivatel_id`) VALUES ('MP5', '2');

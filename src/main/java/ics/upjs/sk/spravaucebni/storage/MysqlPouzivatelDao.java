@@ -33,7 +33,6 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
                 pouzivatel.setId(rs.getLong("id"));
                 pouzivatel.setMeno(rs.getString("meno"));
                 pouzivatel.setHeslo(rs.getString("heslo"));
-                pouzivatel.setSol(rs.getString("sol"));
                 pouzivatel.setPoslednePrihlasenie(rs.getTimestamp("posledne_prihlasenie").toLocalDateTime());
                 pouzivatel.setEmail(rs.getString("email"));
                 pouzivatel.setUcebne(ucebnaDao.getByPouzivatelId(pouzivatel.getId()));
@@ -57,7 +56,6 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
                 pouzivatel.setId(rs.getLong("id"));
                 pouzivatel.setMeno(rs.getString("meno"));
                 pouzivatel.setHeslo(rs.getString("heslo"));
-                pouzivatel.setSol(rs.getString("sol"));
                 pouzivatel.setPoslednePrihlasenie(rs.getTimestamp("posledne_prihlasenie").toLocalDateTime());
                 pouzivatel.setEmail(rs.getString("email"));
                 pouzivatel.setUcebne(ucebnaDao.getByPouzivatelId(pouzivatel.getId()));
@@ -80,18 +78,17 @@ public class MysqlPouzivatelDao implements PouzivatelDao {
                 SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
                 simpleJdbcInsert.withTableName("pouzivatel");
                 simpleJdbcInsert.usingGeneratedKeyColumns("id");
-                simpleJdbcInsert.usingColumns("meno", "heslo", "sol", "posledne_prihlasenie", "email");
+                simpleJdbcInsert.usingColumns("meno", "heslo", "posledne_prihlasenie", "email");
                 Map<String, Object> data = new HashMap<>();
                 data.put("meno", p.getMeno());
                 data.put("heslo", p.getHeslo());
-                data.put("sol", p.getSol());
                 data.put("posledne_prihlasenie", p.getPoslednePrihlasenie());
                 data.put("email", p.getEmail());
                 p.setId(simpleJdbcInsert.executeAndReturnKey(data).longValue());
                 
             } else {
-                String sql = "UPDATE pouzivatel SET meno = ?, heslo = ?, sol = ?, posledne_prihlasenie = ?, email = ? WHERE id = " + p.getId();
-                jdbcTemplate.update(sql, p.getMeno(), p.getHeslo(), p.getSol(), p.getPoslednePrihlasenie(), p.getEmail());
+                String sql = "UPDATE pouzivatel SET meno = ?, heslo = ?, posledne_prihlasenie = ?, email = ? WHERE id = " + p.getId();
+                jdbcTemplate.update(sql, p.getMeno(), p.getHeslo(), p.getPoslednePrihlasenie(), p.getEmail());
             }
             for (Ucebna ucebna : ucebnaDao.getByPouzivatelId(p.getId())) {
                 ucebna.setId(null);

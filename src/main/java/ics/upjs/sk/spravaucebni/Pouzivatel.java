@@ -9,7 +9,6 @@ public class Pouzivatel {
     private Long id;
     private String meno;
     private String heslo;
-    private String sol;
     private String email;
     private LocalDateTime poslednePrihlasenie;
     private List<Ucebna> ucebne;
@@ -35,19 +34,8 @@ public class Pouzivatel {
     }
 
     public void setHeslo(String heslo) {
-        if (sol == null) {
-            sol = BCrypt.gensalt();
-        }
-        
+        String sol = BCrypt.gensalt();
         this.heslo = BCrypt.hashpw(heslo, sol);
-    }
-
-    public boolean checkHeslo(String heslo) {
-        if (sol == null) {
-            return false;
-        }
-        String hash = BCrypt.hashpw(heslo, sol);
-        return hash.equals(this.heslo);
     }
     
     public String getEmail() {
@@ -72,14 +60,6 @@ public class Pouzivatel {
 
     public void setUcebne(List<Ucebna> ucebne) {
         this.ucebne = ucebne;
-    }
-
-    public String getSol() {
-        return sol;
-    }
-
-    public void setSol(String sol) {
-        this.sol = sol;
     }
 
     @Override

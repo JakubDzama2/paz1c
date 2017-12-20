@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
@@ -112,9 +114,12 @@ public class SpotrebaSceneController {
     }
     
     private void nastavLabely() {
-        celkovaSpotrebaLabel.setText("Celková spotreba v tomto mesiaci je " + model.getCelkovaSpotreba());
-        celkovaCenaLabel.setText("Celková cena v tomto mesiaci je " + model.getCelkovaCena());
-        priemernaSpotrebaLabel.setText("Priemerná spotreba v tomto mesiaci je " + model.getPriemernaSpotreba());
+        DecimalFormat df = new DecimalFormat("#.###");
+        df.setRoundingMode(RoundingMode.CEILING);
+        
+        celkovaSpotrebaLabel.setText("Celková spotreba v tomto mesiaci je " + model.getCelkovaSpotreba() + " kWh");
+        celkovaCenaLabel.setText("Celková cena v tomto mesiaci je " + df.format(model.getCelkovaCena()) + " €");
+        priemernaSpotrebaLabel.setText("Priemerná spotreba v tomto mesiaci je " + df.format(model.getPriemernaSpotreba()) + " kWh");
     }
     
    
