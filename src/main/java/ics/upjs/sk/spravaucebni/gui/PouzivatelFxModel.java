@@ -21,18 +21,15 @@ public class PouzivatelFxModel {
     private StringProperty mail = new SimpleStringProperty();
     private UcebnaDao ucebnaDao = DaoFactory.INSTANCE.getUcebnaDao();
     private List<Ucebna> ucebne = ucebnaDao.getAll();
-    private List<Ucebna> ucebneBezSpravcu = new ArrayList<>();
+    private List<Ucebna> ucebneBezSpravcu;
     private Map<Long, BooleanProperty> ucebneBezSpravcuMap = new HashMap<>();
     
 
     public PouzivatelFxModel() {
          
-        
-         for (Ucebna u: ucebne) {
-          if(u.getIdPouzivatela() == 0){
-              ucebneBezSpravcu.add(u);
+        ucebneBezSpravcu = ucebnaDao.getUcebneBezPouzivatelov();
+        for (Ucebna u: ucebneBezSpravcu) {
               ucebneBezSpravcuMap.put(u.getId(), new SimpleBooleanProperty(false));
-          }
         }
     }
 

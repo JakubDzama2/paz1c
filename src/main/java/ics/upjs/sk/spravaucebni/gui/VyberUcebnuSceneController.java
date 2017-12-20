@@ -1,5 +1,6 @@
 package ics.upjs.sk.spravaucebni.gui;
 
+import ics.upjs.sk.spravaucebni.Pouzivatel;
 import ics.upjs.sk.spravaucebni.Ucebna;
 import ics.upjs.sk.spravaucebni.storage.DaoFactory;
 import ics.upjs.sk.spravaucebni.storage.UcebnaDao;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.stage.Modality;
@@ -32,6 +34,9 @@ public class VyberUcebnuSceneController {
     @FXML
     private URL location;
 
+    @FXML
+    private ComboBox<Pouzivatel> spravcaCombobox;
+    
     @FXML
     private ListView<Ucebna> vyberUcebnuListView;
 
@@ -56,9 +61,19 @@ public class VyberUcebnuSceneController {
     @FXML
     void initialize() {
         vyberUcebnuListView.setItems(model.getUcebne());
+        spravcaCombobox.setItems(model.getPouzivatelia());
         zmazatButton.setDisable(true);
         pokracovatButton.setDisable(true);
         editovatButton.setDisable(true);
+        
+        spravcaCombobox.getSelectionModel().selectLast();
+        spravcaCombobox.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+            model.setVybratyPouzivatel(newValue);
+        }));        
+        model.getVybratyPouzivatelProperty().addListener(((observable, oldValue, newValue) -> {
+            spravcaCombobox.getSelectionModel().select(newValue);
+        }));
+        
         vyberUcebnuListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Ucebna>() {
             @Override
             public void changed(ObservableValue<? extends Ucebna> observable, Ucebna oldValue, Ucebna newValue) {
