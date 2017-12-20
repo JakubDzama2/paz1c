@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
@@ -153,6 +154,7 @@ public class VyberUcebnuSceneController {
             stage.setMaxWidth(626);
             stage.setMaxHeight(626);
             
+            stage.getIcons().add(new Image(VyberUcebnuSceneController.class.getResourceAsStream("settings.png")));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException iOException) {

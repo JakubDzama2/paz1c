@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -108,6 +109,8 @@ public class VyberOznamSceneController {
             stage.setMaxWidth(626);
             stage.setMaxHeight(626);
           
+            stage.getIcons().add(new Image(VyberOznamSceneController.class.getResourceAsStream("settings.png")));
+            
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
         } catch (IOException iOException) {

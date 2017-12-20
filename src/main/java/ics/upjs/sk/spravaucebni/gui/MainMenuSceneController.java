@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -64,6 +65,7 @@ public class MainMenuSceneController {
             stage.setMaxHeight(626);
             stage.setMinHeight(360);
             
+            stage.getIcons().add(new Image(MainMenuSceneController.class.getResourceAsStream("settings.png")));
             scene.getStylesheets().add(MainMenuSceneController.class.getResource("MainMenuScene.css").toExternalForm());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();

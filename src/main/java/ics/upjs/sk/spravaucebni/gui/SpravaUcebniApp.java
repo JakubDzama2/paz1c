@@ -27,7 +27,8 @@ public class SpravaUcebniApp extends Application {
         stage.setMaxHeight(408);
         stage.setMinHeight(360);
         
-        //stage.getIcons().add(new Image("src/main/resources/settings.png"));
+        
+        stage.getIcons().add(new Image(SpravaUcebniApp.class.getResourceAsStream("settings.png")));
         scene.getStylesheets().add(SpravaUcebniApp.class.getResource("MainMenuScene.css").toExternalForm());
         stage.show();
     }

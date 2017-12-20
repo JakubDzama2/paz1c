@@ -17,6 +17,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -127,8 +128,12 @@ public class SpotrebaSceneController {
 
         Stage stage = new Stage();
         
+        stage.getIcons().add(new Image(SpotrebaSceneController.class.getResourceAsStream("settings.png")));
         stage.setTitle(stageTitle);
         stage.setScene(new Scene(pane, 900, 500));
+        
+        stage.setMinWidth(100);
+        stage.setMinHeight(100);
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = screenSize.getWidth();
