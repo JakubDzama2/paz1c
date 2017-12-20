@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class EditUcebnaSceneController {
@@ -91,6 +92,8 @@ public class EditUcebnaSceneController {
             stage.setMaxWidth(626);
             stage.setMaxHeight(626);
 
+            stage.getIcons().add(new Image(EditUcebnaSceneController.class.getResourceAsStream("settings.png")));
+            
             stage.show();
         } catch (IOException iOException) {
             iOException.printStackTrace();
