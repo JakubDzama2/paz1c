@@ -73,7 +73,9 @@ public class SpotrebaDaoTest {
     public void saveTest() {
         List<Spotreba> all = dao.getAll();
         Spotreba s = new Spotreba();
-        s.setDatum(LocalDate.now());
+        LocalDate date = LocalDate.now();
+        date = date.plusDays(2);
+        s.setDatum(date);
         s.setHodnota(45);
         s.setUcebnaId(1L);
         assertTrue(dao.save(s));
