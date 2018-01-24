@@ -30,7 +30,7 @@ public class MysqlUcebnaDao implements UcebnaDao {
 
     @Override
     public List<Ucebna> getAll() {
-        String sql = "SELECT id, nazov, pouzivatel_id FROM ucebna ORDER BY id";
+        String sql = "SELECT id, nazov, pouzivatel_id FROM ucebna ORDER BY pouzivatel_id";
         List<Ucebna> ucebne = jdbcTemplate.query(sql, new RowMapper<Ucebna>() {
             @Override
             public Ucebna mapRow(ResultSet rs, int rowNum) throws SQLException {

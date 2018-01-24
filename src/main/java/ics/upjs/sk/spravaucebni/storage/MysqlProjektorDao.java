@@ -35,7 +35,7 @@ public class MysqlProjektorDao implements ProjektorDao {
             }
         });
     }
-
+    
     @Override
     public List<Projektor> getByUcebnaId(Long id) {
         String sql = "SELECT id, pocet_nasvietenych_hodin, kvalita_obrazu, nazov_modelu, ocakavana_zivotnost_lampy, ucebna_id FROM projektor WHERE ucebna_id = " + id + " ORDER BY id";
@@ -49,6 +49,24 @@ public class MysqlProjektorDao implements ProjektorDao {
                 projektor.setNazovModelu(rs.getString("nazov_modelu"));
                 projektor.setOcakavanaZivotnostLampy(rs.getInt("ocakavana_zivotnost_lampy"));
                 projektor.setUcebnaId(rs.getLong("ucebna_id"));
+                return projektor;
+            }
+        });
+    }
+
+    @Override
+    public List<Projektor> getByPouzivatelId(Long id) {
+        String sql = "SELECT p.id, p.pocet_nasvietenych_hodin, p.kvalita_obrazu, p.nazov_modelu, p.ocakavana_zivotnost_lampy, p.ucebna_id FROM projektor AS p JOIN ucebna AS u ON p.ucebna_id = u.id WHERE u.pouzivatel_id = " + id + " ORDER BY u.id";
+        return jdbcTemplate.query(sql, new RowMapper<Projektor>() {
+            @Override
+            public Projektor mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Projektor projektor = new Projektor();
+                projektor.setId(rs.getLong("p.id"));
+                projektor.setPocetNasvietenychHodin(rs.getInt("p.pocet_nasvietenych_hodin"));
+                projektor.setKvalitaObrazu(rs.getString("p.kvalita_obrazu"));
+                projektor.setNazovModelu(rs.getString("p.nazov_modelu"));
+                projektor.setOcakavanaZivotnostLampy(rs.getInt("p.ocakavana_zivotnost_lampy"));
+                projektor.setUcebnaId(rs.getLong("p.ucebna_id"));
                 return projektor;
             }
         });

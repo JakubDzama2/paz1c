@@ -5,11 +5,12 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" stylesheets="@PouzivatelScene.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="345.0" stylesheets="@PouzivatelScene.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ListView fx:id="vyberPouzivatelaListView" layoutX="14.0" layoutY="74.0" prefHeight="260.0" prefWidth="272.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="74.0" />
       <Label layoutX="14.0" layoutY="27.0" prefHeight="37.0" prefWidth="200.0" style="-fx-font: bold 10pt &quot;Arial&quot;;" text="Zoznam používateľov:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="27.0" />
       <Button fx:id="pridatPouzivatelaButton" layoutX="202.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Pridať" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
       <Button fx:id="zmazatPouzivatelaButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Zmazať" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+      <Button fx:id="prehladProjektorovButton" layoutX="207.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 ); -fx-font: bold italic 8pt &quot;Arial&quot;;" text="Prehľad projektorov" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

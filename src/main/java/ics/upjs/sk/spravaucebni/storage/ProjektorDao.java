@@ -6,6 +6,8 @@ import java.util.List;
 public interface ProjektorDao {
 
     List<Projektor> getAll();
+    
+    public List<Projektor> getByPouzivatelId(Long id);
 
     public List<Projektor> getByUcebnaId(Long id);
     

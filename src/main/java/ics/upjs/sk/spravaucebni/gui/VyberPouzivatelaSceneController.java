@@ -34,6 +34,9 @@ public class VyberPouzivatelaSceneController {
     
     @FXML
     private Button pridatPouzivatelaButton;
+    
+    @FXML
+    private Button prehladProjektorovButton;
 
     private VyberPouzivatelaFxModel model = new VyberPouzivatelaFxModel();
     
@@ -41,16 +44,18 @@ public class VyberPouzivatelaSceneController {
     void initialize() {
        vyberPouzivatelaListView.setItems(model.getPouzivatelov());
        zmazatPouzivatelaButton.setDisable(true);
+       prehladProjektorovButton.setDisable(true);
        vyberPouzivatelaListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pouzivatel>() {
             @Override
             public void changed(ObservableValue<? extends Pouzivatel> observable, Pouzivatel oldValue, Pouzivatel newValue) {
                 model.setVybratyPouzivatel(newValue);
                 if (newValue == null) {
                     zmazatPouzivatelaButton.setDisable(true);
+                    prehladProjektorovButton.setDisable(true);
                     
                 } else {
                     zmazatPouzivatelaButton.setDisable(false);
-                    
+                    prehladProjektorovButton.setDisable(false);
                 }
             }
         });
@@ -63,6 +68,35 @@ public class VyberPouzivatelaSceneController {
                     vyberPouzivatelaListView.getSelectionModel().select(newValue);
                 }
             }
+        });
+        
+        prehladProjektorovButton.setOnAction(eh -> {
+            PrehladProjektorovSceneController controller = new PrehladProjektorovSceneController(model.getVybratyPouzivatel().getId());
+            
+            try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("PrehladProjektorovScene.fxml"));
+            loader.setController(controller);
+
+            Parent parentPane = loader.load();
+            Scene scene = new Scene(parentPane);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Prehľad projektorov použivateľa");
+          /*
+            stage.setMinWidth(335);
+            stage.setMinHeight(335);
+            stage.setMaxWidth(626);
+            stage.setMaxHeight(626);
+            */
+            stage.getIcons().add(new Image(VyberPouzivatelaSceneController.class.getResourceAsStream("settings.png")));
+            
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException iOException) {
+            iOException.printStackTrace();
+        }
         });
         
         zmazatPouzivatelaButton.setOnAction(eh -> {
